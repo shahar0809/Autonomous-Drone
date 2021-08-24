@@ -1,21 +1,29 @@
 #include "ctello.h"
-const char* const TELLO_STREAM_URL{ "udp://0.0.0.0:11111" };
-#define Degree 30
+#include <iostream>
+#include <opencv2/opencv.hpp>
 
+const char* const TELLO_STREAM_URL{ "udp://0.0.0.0:11111" };
 
 int main()
 {
     int i;
     ctello::Tello tello;
+    const int degrees = 30;
+
+    // Binding to Tello
     if (!tello.Bind())
     {
         return 0;
     }
-    //start 
-    tello.SendCommand("streamon ");//Enable video stream     
+
+    // Start video stream 
+    tello.SendCommand("streamon ");   
+    // Wait till repsonse from tello
     while (!(tello.ReceiveResponse()));
 
-    //cv::VideoCapture capture{ TELLO_STREAM_URL, CAP_FFMPEG };
+
+    // Start OpenCV video capture
+    cv::VideoCapture capture{ TELLO_STREAM_URL, CAP_FFMPEG };
     /*?????????????????????????????????????????????????
     
         while (true)
