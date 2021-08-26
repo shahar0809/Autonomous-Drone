@@ -12,6 +12,7 @@ using cv::imshow;
 using cv::VideoCapture;
 using cv::waitKey;
 
+<<<<<<< HEAD
 const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111" };
 
 // ORB-SLAM configs
