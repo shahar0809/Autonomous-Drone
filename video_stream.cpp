@@ -2,9 +2,11 @@
 #include <algorithm>
 #include <thread>
 #include <mutex>
-
+//#include <eigen3/Eigen/Core>
+#include <System.h>
 #include "ctello.h"
 #include <opencv2/core/core.hpp>
+#include <opencv2/opencv.hpp>
 
 using ctello::Tello;
 using cv::CAP_FFMPEG;
@@ -12,7 +14,9 @@ using cv::imshow;
 using cv::VideoCapture;
 using cv::waitKey;
 
-<<<<<<< HEAD
+void init_tello(Tello& tello);
+void video_stream(bool& isDone, std::mutex& doneMutex);
+
 const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111" };
 
 // ORB-SLAM configs
@@ -21,13 +25,13 @@ const char* const PATH_TO_CONFIG { "TUM.yaml" };
 
 int main()
 {
-    Tello tello;
-    bool* isDone = false;
+    ctello::Tello tello;    
+    bool isDone =  false;
     std::mutex doneMutex;
 
     init_tello(tello);
 
-    std::thread video(video_stream, isDone, doneMutex);
+    std::thread video(video_stream, std::ref(isDone), std::ref(doneMutex));
 
     // Scan the room 360 degress
     tello.SendCommand("cw 360");
@@ -36,15 +40,15 @@ int main()
 
     doneMutex.lock();
     isDone = true;
-    doneMutex.unlock()
+    doneMutex.unlock();
 }
 
-void init_tello()
+void init_tello(Tello& tello)
 {
     // Binding Tello to socket
     if (!tello.Bind())
     {
-        return 0;
+        return;
     }
 
     // Starting video stream from Tello
@@ -53,9 +57,9 @@ void init_tello()
     while (!(tello.ReceiveResponse()));
 }
 
-void video_stream(bool* isDone, std::mutex doneMutex)
+void video_stream(bool& isDone, std::mutex& doneMutex)
 {
-    cv::VideoCapture(TELLO_STREAM_URL, CAP_FFMPEG);
+    cv::VideoCapture capture(TELLO_STREAM_URL, CAP_FFMPEG);
     ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
 
     bool terminate = false;
@@ -66,7 +70,7 @@ void video_stream(bool* isDone, std::mutex doneMutex)
         timestamp++;
 
         doneMutex.lock();
-        terminate = *isDone;
+        terminate = isDone;
         doneMutex.unlock();
 
         // See surrounding.
