@@ -34,9 +34,9 @@ int main()
     std::thread video(video_stream, std::ref(isDone), std::ref(doneMutex));
 
     // Scan the room 360 degress
-    tello.SendCommand("cw 360");
+    //tello.SendCommand("cw 360");
 
-    while (!(tello.ReceiveResponse()));
+    //while (!(tello.ReceiveResponse()));
 
     doneMutex.lock();
     isDone = true;
