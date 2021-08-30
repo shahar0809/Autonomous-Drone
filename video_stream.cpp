@@ -1,8 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <thread>
 #include <mutex>
-//#include <eigen3/Eigen/Core>
 #include <System.h>
 #include "ctello.h"
 #include <opencv2/core/core.hpp>
@@ -15,36 +13,67 @@ using cv::VideoCapture;
 using cv::waitKey;
 
 void init_tello(Tello& tello);
-void video_stream(bool& isDone, std::mutex& doneMutex);
 
-const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111" };
+[[noreturn]] void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture, ORB_SLAM2::System& SLAM);
+
+const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=50000000" };
 
 // ORB-SLAM configs
-const char* const PATH_TO_VOCABULARY { "ORBvoc.txt.tar.gz" };
-const char* const PATH_TO_CONFIG { "TUM.yaml" };
+const char* const PATH_TO_VOCABULARY { "ORB_SLAM2/Vocabulary/ORBvoc.txt" };
+const char* const PATH_TO_CONFIG { "/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/TUM1.yaml" };
 
 int main()
 {
-    ctello::Tello tello;    
+    ctello::Tello tello;
     bool isDone =  false;
     std::mutex doneMutex;
 
-    init_tello(tello);
+    // Initializing ORB-SLAM2
+    ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
+    
+    std::cout << "init" << std::endl;
+    // Binding Tello to socket
+    if (!tello.Bind())
+    {
+        std::cerr << "Couldn't bind to Tello!" << std::endl;
+    }
 
-    std::thread video(video_stream, std::ref(isDone), std::ref(doneMutex));
+    // Telling Tello to takeoff
+    tello.SendCommand("takeoff");
+    // Wait until tello sends response
+    while (!(tello.ReceiveResponse()));
 
-    // Scan the room 360 degress
+    tello.SendCommand("stop");
+    // Wait until tello sends response
+    while (!(tello.ReceiveResponse()));
+
+    // Starting video stream from Tello
+    tello.SendCommand("streamon");
+    // Wait until tello sends response
+    while (!(tello.ReceiveResponse()));
+
+    // Initializing OpenCV video stream from Tello camera
+    cv::VideoCapture capture{TELLO_STREAM_URL, CAP_FFMPEG};
+
+    std::thread video(video_stream, std::ref(isDone), std::ref(doneMutex), std::ref(capture), std::ref(SLAM));
+
+    // Scan the room 360 degrees
     //tello.SendCommand("cw 360");
-
     //while (!(tello.ReceiveResponse()));
 
+    sleep(30);
+
+    // Telling video stream thread to terminate
     doneMutex.lock();
     isDone = true;
     doneMutex.unlock();
+
+    video.join();
 }
 
 void init_tello(Tello& tello)
 {
+    std::cout << "init" << std::endl;
     // Binding Tello to socket
     if (!tello.Bind())
     {
@@ -57,38 +86,24 @@ void init_tello(Tello& tello)
     while (!(tello.ReceiveResponse()));
 }
 
-void video_stream(bool& isDone, std::mutex& doneMutex)
+void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture, ORB_SLAM2::System& SLAM)
 {
-    cv::VideoCapture capture(TELLO_STREAM_URL, CAP_FFMPEG);
-    ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
+    std::cout << "stream" << std::endl;
 
     bool terminate = false;
-    int timestamp = 0;
 
     while (!terminate)
     {
-        timestamp++;
-
         doneMutex.lock();
         terminate = isDone;
         doneMutex.unlock();
 
-        // See surrounding.
+        // Get frames from Tello video stream
         cv::Mat frame;
         capture >> frame;
 
-        // TODO: ORB_SLAM on frame from drone (don't know about timestamps)
         // Pass the image to the SLAM system
-        SLAM.TrackMonocular(frame, timestamp);
-
-        // Show what the Tello sees
-        imshow("CTello Stream", frame);
-
-        // Stop stream
-        if (waitKey(1) == 27)
-        {
-            break;
-        }
+        SLAM.TrackMonocular(frame, 0.2);
     }
 
     capture.release();

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="EXIT_SCAN"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\spdlog\;CMake Files\..\..\..\..\usr\local\lib\cmake\Pangolin\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\OpenCV\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.71.0\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.71.0\;CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_serialization-1.71.0\;CMake Files\ORB_SLAM2\;CMake Files\ORB_SLAM2\cmake_modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ctello">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/libctello.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSPDLOG_COMPILED_LIB"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 ctello"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ctello/fast">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/libctello.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSPDLOG_COMPILED_LIB"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 ctello/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="EXIT_SCAN">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/libEXIT_SCAN.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_SERIALIZATION_DYN_LINK"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 EXIT_SCAN"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="EXIT_SCAN/fast">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/libEXIT_SCAN.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_SERIALIZATION_DYN_LINK"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 EXIT_SCAN/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="video_stream">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/video_stream" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_SERIALIZATION_DYN_LINK"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 video_stream"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="video_stream/fast">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/video_stream" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_SERIALIZATION_DYN_LINK"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 video_stream/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Converter.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Frame.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/FrameDrawer.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Initializer.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/KeyFrame.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/KeyFrameDatabase.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/LocalMapping.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/LoopClosing.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Map.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/MapDrawer.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/MapPoint.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/ORBextractor.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/ORBmatcher.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Optimizer.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/PnPsolver.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Sim3Solver.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/System.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Tracking.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Viewer.cc">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ctello/src/ctello.cpp">
+			<Option target="ctello"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/video_stream.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/spdlog/spdlogConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/spdlog/spdlogConfigTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/spdlog/spdlogConfigTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/spdlog/spdlogConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\spdlog\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/Pangolin/PangolinConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/Pangolin/PangolinConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/Pangolin/PangolinTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/lib/cmake/Pangolin/PangolinTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Pangolin\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/BoostDetectToolset-1.71.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.71.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.71.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_serialization-1.71.0/boost_serialization-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_serialization-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_serialization-1.71.0/boost_serialization-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_serialization-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_serialization-1.71.0/libboost_serialization-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_serialization-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/../../../../usr/lib/x86_64-linux-gnu/cmake/boost_serialization-1.71.0/libboost_serialization-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_serialization-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/cmake_modules/FindEigen3.cmake">
+			<Option virtualFolder="CMake Files\ORB_SLAM2\cmake_modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
