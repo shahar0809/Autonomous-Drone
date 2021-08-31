@@ -1,11 +1,9 @@
-#include <iostream>
 #include <thread>
 #include <mutex>
 #include <System.h>
 #include "ctello.h"
-#include "camera_calibration.cpp"
-#include <opencv2/core/core.hpp>
 #include <opencv2/opencv.hpp>
+#include "camera_calibration.hpp"
 
 using ctello::Tello;
 using cv::CAP_FFMPEG;
@@ -30,8 +28,14 @@ int main()
     ctello::Tello tello;
     bool isDone =  false;
     std::mutex doneMutex;
+    Calibration cal;
 
-    Calibration cal = calibrate_camera("CameraCalibration/out_camera_data.yaml");
+    try {
+        cal = user_calibrate_camera("/home/magshimim/Documents/exit-scan/in_VID5.xml");
+    } catch (const std::invalid_argument& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 
     // Initializing ORB-SLAM2
     ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
@@ -80,6 +84,11 @@ int main()
             sleep(3);
 
             if (SLAM.GetTrackingState())
+            {
+                tello.SendCommand("cw -" + std::to_string(TURN_DEGREES));
+                while (!(tello.ReceiveResponse()));
+                sleep(3);
+            }
         }
     }
 
@@ -123,13 +132,13 @@ void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture
         doneMutex.unlock();
 
         // Get frames from Tello video stream
-        cv::Mat frame;
+        cv::Mat frame, undist_frame;
         capture >> frame;
 
-        undistort(frame, frame, cal.cameraMatrix, cal.distCoeffs);
+        cv::undistort(frame.clone(), undist_frame, cal.cameraMatrix, cal.distCoeffs);
 
         // Pass the image to the SLAM system
-        SLAM.TrackMonocular(frame, 0.2);
+        SLAM.TrackMonocular(undist_frame, 0.2);
     }
 
     capture.release();

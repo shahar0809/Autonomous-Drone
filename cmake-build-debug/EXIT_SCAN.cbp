@@ -303,7 +303,7 @@
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Viewer.cc">
 			<Option target="EXIT_SCAN"/>
 		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/camera_calibaration.cpp">
+		<Unit filename="/home/magshimim/Documents/exit-scan/camera_calibration.hpp">
 			<Option target="video_stream"/>
 		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ctello/src/ctello.cpp">

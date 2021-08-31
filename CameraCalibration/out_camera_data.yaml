@@ -1,36 +1,36 @@
-  %YAML:1.0
-  calibration_Time: "08/19/11 20:44:38"
-  nrOfFrames: 8
-  image_Width: 640
-  image_Height: 480
-  board_Width: 9
-  board_Height: 6
-  square_Size: 50.
-  FixAspectRatio: 1.
-  # flags:  +fix_aspectRatio +fix_principal_point +zero_tangent_dist
-  flagValue: 14
-  Camera_Matrix: !!opencv-matrix
+%YAML:1.0
+calibration_Time: "08/31/21 20:44:38"
+nrOfFrames: 8
+image_Width: 640
+image_Height: 480
+board_Width: 9
+board_Height: 6
+square_Size: 50.
+FixAspectRatio: 1.
+# flags:  +fix_aspectRatio +fix_principal_point +zero_tangent_dist
+flagValue: 14
+Camera_Matrix: !!opencv-matrix
     rows: 3
     cols: 3
     dt: d
     data: [ 6.5746697810243404e+002, 0., 3.1950000000000000e+002, 0.,
             6.5746697810243404e+002, 2.3950000000000000e+002, 0., 0., 1. ]
-  Distortion_Coefficients: !!opencv-matrix
+Distortion_Coefficients: !!opencv-matrix
     rows: 5
     cols: 1
     dt: d
     data: [ -4.1802327018241026e-001, 5.0715243805833121e-001, 0., 0.,
             -5.7843596847939704e-001 ]
-  Avg_Reprojection_Error: 3.8441346462381665e-001
-  Per_View_Reprojection_Errors: !!opencv-matrix
+Avg_Reprojection_Error: 3.8441346462381665e-001
+Per_View_Reprojection_Errors: !!opencv-matrix
     rows: 8
     cols: 1
     dt: f
     data: [ 5.04357755e-001, 4.85754758e-001, 3.99563968e-001,
             4.13829178e-001, 3.53570908e-001, 3.21116358e-001,
             2.74473161e-001, 2.39761785e-001 ]
-  # a set of 6-tuples (rotation vector + translation vector) for each view
-  Extrinsic_Parameters: !!opencv-matrix
+# a set of 6-tuples (rotation vector + translation vector) for each view
+Extrinsic_Parameters: !!opencv-matrix
     rows: 8
     cols: 6
     dt: d
@@ -58,7 +58,7 @@
             -5.8017546499862287e-002, -1.6909812666033443e-003,
             -1.5876137659782963e+000, -1.0242234847115104e+002,
             2.2583088401423066e+002, 1.1125972190244058e+003 ]
-  Image_points: !!opencv-matrix
+Image_points: !!opencv-matrix
     rows: 8
     cols: 54
     dt: "2f"
