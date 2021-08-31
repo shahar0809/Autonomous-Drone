@@ -246,6 +246,11 @@ Calibration user_calibrate_camera(const std::string& path)
     fs.release();                                         // close Settings file
 
     FileStorage out(s.outputFileName, FileStorage::READ);
+    if (!out.isOpened())
+    {
+        cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
+        throw std::invalid_argument(std::string("config file"));
+    }
     if (out["Camera_Matrix"] != nullptr)
     {
         Mat camera_mat, dist;
