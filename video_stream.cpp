@@ -31,7 +31,7 @@ int main()
     bool isDone =  false;
     std::mutex doneMutex;
 
-    Calibration cal = calibrate_camera("out_camera_data.yaml");
+    Calibration cal = calibrate_camera("CameraCalibration/out_camera_data.yaml");
 
     // Initializing ORB-SLAM2
     ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
