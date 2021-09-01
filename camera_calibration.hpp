@@ -245,129 +245,139 @@ Calibration user_calibrate_camera(const std::string& path)
     fs["Settings"] >> s;
     fs.release();                                         // close Settings file
 
-    FileStorage out(s.outputFileName, FileStorage::READ);
-    if (!out.isOpened())
-    {
-        cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
-        throw std::invalid_argument(std::string("config file"));
-    }
-    if (out["Camera_Matrix"] != nullptr)
-    {
-        Mat camera_mat, dist;
+    try {
+        FileStorage out(s.outputFileName, FileStorage::READ);
+
+        if (!out.isOpened()) {
+            cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
+            throw std::invalid_argument(std::string("config file"));
+        }
+
+        cv::Mat camera_mat, dist;
         out["Camera_Matrix"] >> camera_mat;
         out["Distortion_Coefficients"] >> dist;
         return Calibration{ camera_mat, dist };
+
     }
-
-    if (!s.goodInput)
+    catch (...)
     {
-        cout << "Invalid input detected. Application stopping. " << endl;
-        throw std::invalid_argument(std::string("invalid input"));
-    }
-
-    vector<vector<Point2f> > imagePoints;
-    Mat cameraMatrix, distCoeffs;
-    Size imageSize;
-    int mode = s.inputType == Settings::IMAGE_LIST ? CAPTURING : DETECTION;
-    clock_t prevTimestamp = 0;
-    const Scalar RED(0,0,255), GREEN(0,255,0);
-    const char ESC_KEY = 27;
-
-    for(int i = 0;;++i)
-    {
-        Mat view;
-        bool blinkOutput = false;
-
-        view = s.nextImage();
-
-        //-----  If no more image, or got enough, then stop calibration and show result -------------
-        if( mode == CAPTURING && imagePoints.size() >= (unsigned)s.nrFrames )
+        if (!s.goodInput)
         {
-            if( runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints))
-                mode = CALIBRATED;
-            else
-                mode = DETECTION;
+            cout << "Invalid input detected. Application stopping. " << endl;
+            throw std::invalid_argument(std::string("invalid input"));
         }
-        if(view.empty())          // If no more images then run calibration, save and stop loop.
+
+        vector<vector<Point2f> > imagePoints;
+        Mat cameraMatrix, distCoeffs;
+        Size imageSize;
+        int mode = s.inputType == Settings::IMAGE_LIST ? CAPTURING : DETECTION;
+        clock_t prevTimestamp = 0;
+        const Scalar RED(0,0,255), GREEN(0,255,0);
+        const char ESC_KEY = 27;
+
+        for(int i = 0;;++i)
         {
-            if( imagePoints.size() > 0 )
+            Mat view;
+            bool blinkOutput = false;
+
+            view = s.nextImage();
+
+            //-----  If no more image, or got enough, then stop calibration and show result -------------
+            if( mode == CAPTURING && imagePoints.size() >= (unsigned)s.nrFrames )
+            {
+                if( runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints))
+                    mode = CALIBRATED;
+                else
+                    mode = DETECTION;
+            }
+            if(view.empty())          // If no more images then run calibration, save and stop loop.
+            {
+                if( imagePoints.size() > 0 )
+                    runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
+                break;
+            }
+
+
+            imageSize = view.size();  // Format input image.
+            if( s.flipVertical )    flip( view, view, 0 );
+
+            vector<Point2f> pointBuf;
+
+            bool found;
+            switch( s.calibrationPattern ) // Find feature points on the input format
+            {
+                case Settings::CHESSBOARD:
+                    found = findChessboardCorners( view, s.boardSize, pointBuf,
+                                                   CV_CALIB_CB_ADAPTIVE_THRESH | CV_CALIB_CB_FAST_CHECK | CV_CALIB_CB_NORMALIZE_IMAGE);
+                    cout << "found: " << found << std::endl;
+                    break;
+                case Settings::CIRCLES_GRID:
+                    found = findCirclesGrid( view, s.boardSize, pointBuf );
+                    break;
+                case Settings::ASYMMETRIC_CIRCLES_GRID:
+                    found = findCirclesGrid( view, s.boardSize, pointBuf, CALIB_CB_ASYMMETRIC_GRID );
+                    break;
+                default:
+                    found = false;
+                    break;
+            }
+
+            if ( found)                // If done with success,
+            {
+                // improve the found corners' coordinate accuracy for chessboard
+                if( s.calibrationPattern == Settings::CHESSBOARD)
+                {
+                    Mat viewGray;
+                    cvtColor(view, viewGray, COLOR_BGR2GRAY);
+                    cornerSubPix( viewGray, pointBuf, Size(11,11),
+                                  Size(-1,-1), TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 30, 0.1 ));
+                }
+
+                if( mode == CAPTURING &&  // For camera only take new samples after delay time
+                    (!s.inputCapture.isOpened() || clock() - prevTimestamp > s.delay*1e-3*CLOCKS_PER_SEC) )
+                {
+                    imagePoints.push_back(pointBuf);
+                    prevTimestamp = clock();
+                    blinkOutput = s.inputCapture.isOpened();
+                }
+
+                // Draw the corners.
+                drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
+
                 runCalibrationAndSave(s, imageSize,  cameraMatrix, distCoeffs, imagePoints);
-            break;
-        }
-
-
-        imageSize = view.size();  // Format input image.
-        if( s.flipVertical )    flip( view, view, 0 );
-
-        vector<Point2f> pointBuf;
-
-        bool found;
-        switch( s.calibrationPattern ) // Find feature points on the input format
-        {
-            case Settings::CHESSBOARD:
-                found = findChessboardCorners( view, s.boardSize, pointBuf,
-                                               CV_CALIB_CB_ADAPTIVE_THRESH | CV_CALIB_CB_FAST_CHECK | CV_CALIB_CB_NORMALIZE_IMAGE);
-                break;
-            case Settings::CIRCLES_GRID:
-                found = findCirclesGrid( view, s.boardSize, pointBuf );
-                break;
-            case Settings::ASYMMETRIC_CIRCLES_GRID:
-                found = findCirclesGrid( view, s.boardSize, pointBuf, CALIB_CB_ASYMMETRIC_GRID );
-                break;
-            default:
-                found = false;
-                break;
-        }
-
-        if ( found)                // If done with success,
-        {
-            // improve the found corners' coordinate accuracy for chessboard
-            if( s.calibrationPattern == Settings::CHESSBOARD)
-            {
-                Mat viewGray;
-                cvtColor(view, viewGray, COLOR_BGR2GRAY);
-                cornerSubPix( viewGray, pointBuf, Size(11,11),
-                              Size(-1,-1), TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 30, 0.1 ));
+                Calibration result { cameraMatrix, distCoeffs };
+                return result;
             }
 
-            if( mode == CAPTURING &&  // For camera only take new samples after delay time
-                (!s.inputCapture.isOpened() || clock() - prevTimestamp > s.delay*1e-3*CLOCKS_PER_SEC) )
+            //----------------------------- Output Text ------------------------------------------------
+            string msg = (mode == CAPTURING) ? "100/100" :
+                         mode == CALIBRATED ? "Calibrated" : "Press 'g' to start";
+            int baseLine = 0;
+            Size textSize = getTextSize(msg, 1, 1, 1, &baseLine);
+            Point textOrigin(view.cols - 2*textSize.width - 10, view.rows - 2*baseLine - 10);
+
+            if( mode == CAPTURING )
             {
-                imagePoints.push_back(pointBuf);
-                prevTimestamp = clock();
-                blinkOutput = s.inputCapture.isOpened();
+                if(s.showUndistorsed)
+                    msg = format( "%d/%d Undist", (int)imagePoints.size(), s.nrFrames );
+                else
+                    msg = format( "%d/%d", (int)imagePoints.size(), s.nrFrames );
             }
 
-            // Draw the corners.
-            drawChessboardCorners( view, s.boardSize, Mat(pointBuf), found );
-        }
+            putText( view, msg, textOrigin, 1, 1, mode == CALIBRATED ?  GREEN : RED);
 
-        //----------------------------- Output Text ------------------------------------------------
-        string msg = (mode == CAPTURING) ? "100/100" :
-                     mode == CALIBRATED ? "Calibrated" : "Press 'g' to start";
-        int baseLine = 0;
-        Size textSize = getTextSize(msg, 1, 1, 1, &baseLine);
-        Point textOrigin(view.cols - 2*textSize.width - 10, view.rows - 2*baseLine - 10);
+            if( blinkOutput )
+                bitwise_not(view, view);
 
-        if( mode == CAPTURING )
-        {
-            if(s.showUndistorsed)
-                msg = format( "%d/%d Undist", (int)imagePoints.size(), s.nrFrames );
-            else
-                msg = format( "%d/%d", (int)imagePoints.size(), s.nrFrames );
-        }
-
-        putText( view, msg, textOrigin, 1, 1, mode == CALIBRATED ?  GREEN : RED);
-
-        if( blinkOutput )
-            bitwise_not(view, view);
-
-        //------------------------- Video capture  output  undistorted ------------------------------
-        if( mode == CALIBRATED && s.showUndistorsed )
-        {
-            Mat temp = view.clone();
-            undistort(temp, view, cameraMatrix, distCoeffs);
-        }
+            //------------------------- Video capture  output  undistorted ------------------------------
+            if( mode == CALIBRATED && s.showUndistorsed )
+            {
+                Mat temp = view.clone();
+                undistort(temp, view, cameraMatrix, distCoeffs);
+            }
+    }
+        Calibration result { cameraMatrix, distCoeffs };
+        return result;
 
         //------------------------------ Show image and check for input commands -------------------
         /*imshow("Image View", view);
@@ -407,9 +417,6 @@ Calibration user_calibrate_camera(const std::string& path)
                 break;
         }
     }*/
-
-    Calibration result { cameraMatrix, distCoeffs };
-    return result;
 }
 
 static double computeReprojectionErrors( const vector<vector<Point3f> >& objectPoints,

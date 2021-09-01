@@ -3,6 +3,7 @@
 #include <System.h>
 #include "ctello.h"
 #include <opencv2/opencv.hpp>
+#include <Converter.h>
 #include "camera_calibration.hpp"
 
 using ctello::Tello;
@@ -143,4 +144,22 @@ void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture
 
     capture.release();
     SLAM.Shutdown();
+}
+
+void saveMap(ORB_SLAM2::System &SLAM)
+{
+    std::vector<ORB_SLAM2::MapPoint*> mapPoints = SLAM.GetMap()->GetAllMapPoints();
+    std::ofstream pointData;
+    pointData.open("/tmp/pointData.csv");
+
+    for(auto p : mapPoints)
+    {
+        if (p != NULL)
+        {
+            auto point = p->GetWorldPos();
+            Eigen::Matrix<double, 3, 1> v = ORB_SLAM2::Converter::toVector3d(point);
+            pointData << v.x() << "," << v.y() << "," << v.z()<<  std::endl;
+        }
+    }
+    pointData.close();
 }
