@@ -14,7 +14,7 @@ using cv::VideoCapture;
 using cv::waitKey;
 
 void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture,
-                  ORB_SLAM2::System& SLAM, Calibration& cal);
+                  ORB_SLAM2::System& SLAM, Calibration& cal, Mat& proj, Tello& tello);
 void saveMap(ORB_SLAM2::System &SLAM);
 
 const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=50000000" };
@@ -27,6 +27,12 @@ const char* const PATH_TO_SETTINGS { "/home/magshimim/Documents/exit-scan/Camera
 const int CIRCLE_DEGREES = 360;
 const int TURN_DEGREES = 15;
 
+/*
+ * The main function of the project, connects all modules of the project:
+ * - Scan the room
+ * - Detect exit
+ * - Navigate to exit
+ */
 int main()
 {
     ctello::Tello tello;
@@ -37,7 +43,8 @@ int main()
     try
     {
         cal = user_calibrate_camera(PATH_TO_SETTINGS);
-    } catch (const std::invalid_argument& e)
+    }
+    catch (const std::invalid_argument& e)
     {
         std::cout << e.what() << std::endl;
     }
@@ -45,7 +52,6 @@ int main()
     // Initializing ORB-SLAM2
     ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
     
-    std::cout << "init" << std::endl;
     // Binding Tello to socket
     if (!tello.Bind())
     {
@@ -57,6 +63,7 @@ int main()
     // Wait until tello sends response
     while (!(tello.ReceiveResponse()));
 
+    // Telling Tello to hover in the air
     tello.SendCommand("stop");
     //Wait until tello sends response
     while (!(tello.ReceiveResponse()));
@@ -68,80 +75,63 @@ int main()
 
     // Initializing OpenCV video stream from Tello camera
     cv::VideoCapture capture{TELLO_STREAM_URL, CAP_FFMPEG};
-
+    cv::Mat proj;
     std::thread video(video_stream, std::ref(isDone), std::ref(doneMutex), std::ref(capture),
-                      std::ref(SLAM), std::ref(cal));
-
-    // Scan the room 360 degrees
-    //tello.SendCommand("cw 360");
-    //while (!(tello.ReceiveResponse()));
-
-    for (auto start = std::chrono::steady_clock::now(), now = start; now < start + std::chrono::seconds{60}; now = std::chrono::steady_clock::now())
-    {
-        for (int i = 0; i < CIRCLE_DEGREES; i += TURN_DEGREES)
-        {
-            tello.SendCommand("forward 2");
-            while (!(tello.ReceiveResponse()));
-            tello.SendCommand("back 2");
-            while (!(tello.ReceiveResponse()));
-            tello.SendCommand("cw " + std::to_string(TURN_DEGREES));
-            while (!(tello.ReceiveResponse()));
-
-            try
-            {
-                if (SLAM.GetTrackingState())
-                {
-                    tello.SendCommand("cw -" + std::to_string(TURN_DEGREES));
-                    while (!(tello.ReceiveResponse()));
-                    sleep(2);
-                }
-            } catch (...)
-            {
-                std::cout << "Exception using get tracking state" << std::endl;
-            }
-        }
-    }
-
-    std::cout << "time ended" << std::endl;
+                      std::ref(SLAM), std::ref(cal), std::ref(proj), std::ref(tello));
 
     // Telling video stream thread to terminate
-    doneMutex.lock();
+    /*doneMutex.lock();
     isDone = true;
-    doneMutex.unlock();
+    doneMutex.unlock();*/
+
+    while(SLAM.GetTrackingState() == ORB_SLAM2::Tracking::NOT_INITIALIZED)
+    {
+        tello.SendCommand("speed 10");
+        while (!(tello.ReceiveResponse()));
+
+        tello.SendCommand("up 30");
+        while (!(tello.ReceiveResponse()));
+        tello.SendCommand("down 30");
+        while (!(tello.ReceiveResponse()));
+    }
 
     video.join();
+
+    // An ORB-SLAM map was created
+    //cv::Point exitPoint = detectExit();
+    //cv::Mat translationVec, rotationMat;
+    //proj.col(3).copyTo(translationVec);
+
+    //cv::Mat tmp = proj(cv::Rect(0,0,2,2));
+    //tmp.copyTo(rotationMat);
+
+    //navigateExit(exitPoint, &SLAM, translationVec, rotationMat);
 }
 
 void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture,
-                  ORB_SLAM2::System& SLAM, Calibration& cal)
+                  ORB_SLAM2::System& SLAM, Calibration& cal, Mat& proj, ctello::Tello& tello)
 {
-    std::cout << "stream" << std::endl;
-
-    bool terminate = false;
-
-    while (!terminate)
+    while (true)
     {
-        doneMutex.lock();
-        terminate = isDone;
-        doneMutex.unlock();
-
-        cout << "terminate is " << terminate << std::endl;
+        // ORBSLAM created a map -> proceed to detection
+        if(SLAM.GetTrackingState() == ORB_SLAM2::Tracking::OK)
+        {
+            std::cout << "slam init" << std::endl;
+            break;
+        }
 
         // Get frames from Tello video stream
-        cv::Mat frame, undist_frame, resized;
+        cv::Mat frame, undistorted_frame, resized;
         capture >> frame;
-        cout << "got frame from capture" << std::endl;
-        //cv::resize(frame, resized, cv::Size(500, 500));
-        //cout << "resize" << std::endl;
 
         std::cout << cal.cameraMatrix << std::endl;
         std::cout << cal.distCoeffs << std::endl;
 
-        cv::undistort(frame.clone(), undist_frame, cal.cameraMatrix, cal.distCoeffs);
-        cout << "undistort" << std::endl;
+        // Using camera calibration to improve the image
+        //cv::undistort(frame.clone(), undistorted_frame, cal.cameraMatrix, cal.distCoeffs);
+
         // Pass the image to the SLAM system
-        SLAM.TrackMonocular(undist_frame, 0.2);
-        cout << "orb" << std::endl;
+        proj = SLAM.TrackMonocular(undistorted_frame, 0.2);
     }
 
     std::cout << "while loop done" << std::endl;
