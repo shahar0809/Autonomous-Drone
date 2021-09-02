@@ -3,6 +3,7 @@
 #include <System.h>
 #include "ctello.h"
 #include <opencv2/opencv.hpp>
+#include<chrono>
 #include <Converter.h>
 #include "camera_calibration.hpp"
 
@@ -21,7 +22,7 @@ const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111?overrun_nonfatal=1&fif
 // ORB-SLAM configs
 const char* const PATH_TO_VOCABULARY { "/home/magshimim/Documents/exit-scan/ORB_SLAM2/Vocabulary/ORBvoc.txt" };
 const char* const PATH_TO_CONFIG { "/home/magshimim/Documents/exit-scan/ORB_SLAM2/tello.yaml" };
-const char* const PATH_TO_SETTINGS { "/home/magshimim/Documents/exit-scan/in_VID5.xml" };
+const char* const PATH_TO_SETTINGS { "/home/magshimim/Documents/exit-scan/CameraCalibration/in_VID5.xml" };
 
 const int CIRCLE_DEGREES = 360;
 const int TURN_DEGREES = 15;
@@ -75,9 +76,7 @@ int main()
     //tello.SendCommand("cw 360");
     //while (!(tello.ReceiveResponse()));
 
-    int counter = 0;
-
-    while (counter <= 30)
+    for (auto start = std::chrono::steady_clock::now(), now = start; now < start + std::chrono::seconds{60}; now = std::chrono::steady_clock::now())
     {
         for (int i = 0; i < CIRCLE_DEGREES; i += TURN_DEGREES)
         {
@@ -87,20 +86,24 @@ int main()
             while (!(tello.ReceiveResponse()));
             tello.SendCommand("cw " + std::to_string(TURN_DEGREES));
             while (!(tello.ReceiveResponse()));
-            sleep(3);
 
-            if (SLAM.GetTrackingState())
+            try
             {
-                tello.SendCommand("cw -" + std::to_string(TURN_DEGREES));
-                while (!(tello.ReceiveResponse()));
-                sleep(3);
+                if (SLAM.GetTrackingState())
+                {
+                    tello.SendCommand("cw -" + std::to_string(TURN_DEGREES));
+                    while (!(tello.ReceiveResponse()));
+                    sleep(2);
+                }
+            } catch (...)
+            {
+                std::cout << "Exception using get tracking state" << std::endl;
             }
-
-            counter += 3;
         }
     }
 
-    std::cout << "temmmm true " << std::endl;
+    std::cout << "time ended" << std::endl;
+
     // Telling video stream thread to terminate
     doneMutex.lock();
     isDone = true;
@@ -122,12 +125,12 @@ void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture
         terminate = isDone;
         doneMutex.unlock();
 
-        cout << "term " << terminate << std::endl;
+        cout << "terminate is " << terminate << std::endl;
 
         // Get frames from Tello video stream
         cv::Mat frame, undist_frame, resized;
         capture >> frame;
-        cout << "hello" << std::endl;
+        cout << "got frame from capture" << std::endl;
         //cv::resize(frame, resized, cv::Size(500, 500));
         //cout << "resize" << std::endl;
 
@@ -141,11 +144,11 @@ void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture
         cout << "orb" << std::endl;
     }
 
-    std::cout << "doneeeeee" << std::endl;
+    std::cout << "while loop done" << std::endl;
     capture.release();
     saveMap(SLAM);
     SLAM.Shutdown();
-    std::cout << "doneeeeee" << std::endl;
+    std::cout << "thread ended" << std::endl;
 }
 
 void saveMap(ORB_SLAM2::System &SLAM)
@@ -156,7 +159,7 @@ void saveMap(ORB_SLAM2::System &SLAM)
 
     for(auto p : mapPoints)
     {
-        if (p != NULL)
+        if (p != nullptr)
         {
             auto point = p->GetWorldPos();
             Eigen::Matrix<double, 3, 1> v = ORB_SLAM2::Converter::toVector3d(point);

@@ -303,13 +303,13 @@
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Viewer.cc">
 			<Option target="EXIT_SCAN"/>
 		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/camera_calibration.hpp">
-			<Option target="video_stream"/>
-		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ctello/src/ctello.cpp">
 			<Option target="ctello"/>
 		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/video_stream.cpp">
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/camera_calibration.hpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/video_stream.cpp">
 			<Option target="video_stream"/>
 		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/CMakeLists.txt">
