@@ -1,29 +1,34 @@
-//
-// Created by shahar on 9/2/21.
-//
-
 #ifndef EXIT_SCAN_POINT_H
 #define EXIT_SCAN_POINT_H
+
+// TODO: ADD ALL DECLARATIONS TO .h FILE!!!
+/* TODO: AND PLEASE MAKE IT MORE CLEAR.
+ * for example: getx -> get_x
+ * for(){ ->
+ * for()
+ * {
+ * }
+ * better names  for variables
 
 class Point
 {
 public:
-    Point(double _x = 0, double _y = 0)
+    explicit Point(double _x = 0, double _y = 0)
     {
         x = _x;
         y = _y;
     }
-    double getx() const { return x; };
-    double gety() const { return y; };
+    double get_x() const { return x; };
+    double get_y() const { return y; };
 
-    void setx(double num) {
-        x=num;
-        return;
+    void set_x(double num)
+    {
+        x = num;
     }
 
-    void sety(double num) {
-        y=num;
-        return;
+    void set_y(double num)
+    {
+        y = num;
     }
 
     void setx(string str) {

@@ -7,6 +7,7 @@
 
 #include "ctello.h"
 #include "camera_calibration.hpp"
+#include "findExit.cpp"
 
 using ctello::Tello;
 using cv::CAP_FFMPEG;

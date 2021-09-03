@@ -321,6 +321,9 @@
 		<Unit filename="/home/magshimim/Documents/exit-scan/src/camera_calibration.hpp">
 			<Option target="video_stream"/>
 		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/findExit.h">
+			<Option target="video_stream"/>
+		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/src/video_stream.cpp">
 			<Option target="video_stream"/>
 		</Unit>
