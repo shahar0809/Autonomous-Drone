@@ -1,10 +1,11 @@
 #include <thread>
 #include <mutex>
 #include <System.h>
-#include "ctello.h"
-#include <opencv2/opencv.hpp>
-#include<chrono>
 #include <Converter.h>
+#include <queue>
+#include <atomic>
+
+#include "ctello.h"
 #include "camera_calibration.hpp"
 
 using ctello::Tello;
@@ -13,9 +14,9 @@ using cv::imshow;
 using cv::VideoCapture;
 using cv::waitKey;
 
-void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture,
-                  ORB_SLAM2::System& SLAM, Calibration& cal, Mat& proj, Tello& tello);
 void saveMap(ORB_SLAM2::System &SLAM);
+void handle_drone(ctello::Tello& tello, std::mutex& initMutex, bool& isInit);
+void capture_frames(std::mutex& initMutex, bool& isInit);
 
 const char* const TELLO_STREAM_URL { "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=50000000" };
 
@@ -27,6 +28,9 @@ const char* const PATH_TO_SETTINGS { "/home/magshimim/Documents/exit-scan/Camera
 const int CIRCLE_DEGREES = 360;
 const int TURN_DEGREES = 15;
 
+std::queue<cv::Mat> frames;
+std::atomic<bool> signal { false };
+
 /*
  * The main function of the project, connects all modules of the project:
  * - Scan the room
@@ -36,66 +40,45 @@ const int TURN_DEGREES = 15;
 int main()
 {
     ctello::Tello tello;
-    bool isDone =  false;
-    std::mutex doneMutex;
-    Calibration cal;
+    bool isInit =  false;
+    std::mutex initMutex;
 
-    try
-    {
-        cal = user_calibrate_camera(PATH_TO_SETTINGS);
-    }
-    catch (const std::invalid_argument& e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    std::thread drone_t(handle_drone, std::ref(tello), std::ref(initMutex), std::ref(isInit));
+    std::thread capture_t(capture_frames, std::ref(initMutex), std::ref(isInit));
 
     // Initializing ORB-SLAM2
     ORB_SLAM2::System SLAM(PATH_TO_VOCABULARY, PATH_TO_CONFIG, ORB_SLAM2::System::MONOCULAR, true);
-    
-    // Binding Tello to socket
-    if (!tello.Bind())
+    cv::Mat projection;
+    signal = true;
+
+    while (!frames.empty())
     {
-        std::cerr << "Couldn't bind to Tello!" << std::endl;
+        // ORBSLAM created a map -> proceed to detection
+        if(SLAM.GetTrackingState() == ORB_SLAM2::Tracking::OK)
+        {
+            initMutex.lock();
+            isInit = true;
+            initMutex.unlock();
+            break;
+        }
+
+        cv::Mat frame = frames.front();
+        frames.pop();
+
+        // Pass the image to the SLAM system
+        if(!frame.empty())
+        {
+            projection = SLAM.TrackMonocular(frame, 0.2);
+            std::cout << "Projection mat: " << projection << std::endl;
+        }
     }
 
-    // Telling Tello to takeoff
-    tello.SendCommand("takeoff");
-    // Wait until tello sends response
-    while (!(tello.ReceiveResponse()));
+    drone_t.join();
+    capture_t.join();
 
-    // Telling Tello to hover in the air
-    tello.SendCommand("stop");
-    //Wait until tello sends response
-    while (!(tello.ReceiveResponse()));
+    saveMap(SLAM);
 
-    // Starting video stream from Tello
-    tello.SendCommand("streamon");
-    // Wait until tello sends response
-    while (!(tello.ReceiveResponse()));
-
-    // Initializing OpenCV video stream from Tello camera
-    cv::VideoCapture capture{TELLO_STREAM_URL, CAP_FFMPEG};
-    cv::Mat proj;
-    std::thread video(video_stream, std::ref(isDone), std::ref(doneMutex), std::ref(capture),
-                      std::ref(SLAM), std::ref(cal), std::ref(proj), std::ref(tello));
-
-    // Telling video stream thread to terminate
-    /*doneMutex.lock();
-    isDone = true;
-    doneMutex.unlock();*/
-
-    while(SLAM.GetTrackingState() == ORB_SLAM2::Tracking::NOT_INITIALIZED)
-    {
-        tello.SendCommand("speed 10");
-        while (!(tello.ReceiveResponse()));
-
-        tello.SendCommand("up 30");
-        while (!(tello.ReceiveResponse()));
-        tello.SendCommand("down 30");
-        while (!(tello.ReceiveResponse()));
-    }
-
-    video.join();
+    SLAM.Shutdown();
 
     // An ORB-SLAM map was created
     //cv::Point exitPoint = detectExit();
@@ -108,37 +91,66 @@ int main()
     //navigateExit(exitPoint, &SLAM, translationVec, rotationMat);
 }
 
-void video_stream(bool& isDone, std::mutex& doneMutex, cv::VideoCapture& capture,
-                  ORB_SLAM2::System& SLAM, Calibration& cal, Mat& proj, ctello::Tello& tello)
+void capture_frames(std::mutex& initMutex, bool& isInit)
 {
-    while (true)
+    while (!signal);
+
+    cv::VideoCapture capture{TELLO_STREAM_URL, CAP_FFMPEG};
+    cv::Mat frame;
+
+    bool endLoop = false;
+
+    while (capture.isOpened() && !endLoop)
     {
-        // ORBSLAM created a map -> proceed to detection
-        if(SLAM.GetTrackingState() == ORB_SLAM2::Tracking::OK)
-        {
-            std::cout << "slam init" << std::endl;
-            break;
-        }
+        initMutex.lock();
+        endLoop = isInit;
+        initMutex.unlock();
 
-        // Get frames from Tello video stream
-        cv::Mat frame, undistorted_frame, resized;
         capture >> frame;
+        frames.push(frame);
+    }
+}
 
-        std::cout << cal.cameraMatrix << std::endl;
-        std::cout << cal.distCoeffs << std::endl;
-
-        // Using camera calibration to improve the image
-        //cv::undistort(frame.clone(), undistorted_frame, cal.cameraMatrix, cal.distCoeffs);
-
-        // Pass the image to the SLAM system
-        proj = SLAM.TrackMonocular(undistorted_frame, 0.2);
+void handle_drone(ctello::Tello& tello, std::mutex& initMutex, bool& isInit)
+{
+    // Binding Tello to socket
+    if (!tello.Bind())
+    {
+        std::cerr << "Couldn't bind to Tello!" << std::endl;
     }
 
-    std::cout << "while loop done" << std::endl;
-    capture.release();
-    saveMap(SLAM);
-    SLAM.Shutdown();
-    std::cout << "thread ended" << std::endl;
+    // Starting video stream from Tello
+    tello.SendCommand("streamon");
+    // Wait until tello sends response
+    while (!(tello.ReceiveResponse()));
+
+    while (!signal);
+
+    // Telling Tello to takeoff
+    tello.SendCommand("takeoff");
+    // Wait until tello sends response
+    while (!(tello.ReceiveResponse()));
+
+    // Telling Tello to hover in the air
+    tello.SendCommand("stop");
+    //Wait until tello sends response
+    while (!(tello.ReceiveResponse()));
+
+    bool endLoop = false;
+    while(!endLoop)
+    {
+        initMutex.lock();
+        endLoop = isInit;
+        initMutex.unlock();
+
+        tello.SendCommand("speed 10");
+        while (!(tello.ReceiveResponse()));
+
+        tello.SendCommand("up 30");
+        while (!(tello.ReceiveResponse()));
+        tello.SendCommand("down 30");
+        while (!(tello.ReceiveResponse()));
+    }
 }
 
 void saveMap(ORB_SLAM2::System &SLAM)

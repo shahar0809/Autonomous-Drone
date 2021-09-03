@@ -306,6 +306,18 @@
 		<Unit filename="/home/magshimim/Documents/exit-scan/ctello/src/ctello.cpp">
 			<Option target="ctello"/>
 		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/DistPoint.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/DistPoint.h">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/Point.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/src/Point.h">
+			<Option target="EXIT_SCAN"/>
+		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/src/camera_calibration.hpp">
 			<Option target="video_stream"/>
 		</Unit>
