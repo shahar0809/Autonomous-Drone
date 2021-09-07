@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/saker/CLionProjects/Drones Project/Dispoint.cpp
+Dispoint.h
+C:/Users/saker/CLionProjects/Drones Project/Dispoint.h
+
+C:/Users/saker/CLionProjects/Drones Project/Dispoint.h
+Point.h
+C:/Users/saker/CLionProjects/Drones Project/Point.h
+vector
+-
+
+C:/Users/saker/CLionProjects/Drones Project/FindExit.cpp
+FindExit.h
+C:/Users/saker/CLionProjects/Drones Project/FindExit.h
+fstream
+-
+algorithm
+-
+
+C:/Users/saker/CLionProjects/Drones Project/FindExit.h
+Dispoint.h
+C:/Users/saker/CLionProjects/Drones Project/Dispoint.h
+
+C:/Users/saker/CLionProjects/Drones Project/Point.cpp
+Point.h
+C:/Users/saker/CLionProjects/Drones Project/Point.h
+
+C:/Users/saker/CLionProjects/Drones Project/Point.h
+string.h
+-
+string
+-
+
+C:/Users/saker/CLionProjects/Drones Project/main.cpp
+iostream
+-
+FindExit.h
+C:/Users/saker/CLionProjects/Drones Project/FindExit.h
+
