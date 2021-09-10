@@ -11,6 +11,9 @@
 */cmake_install.cmake
 .DS_Store
 
+#build
+build/	
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
