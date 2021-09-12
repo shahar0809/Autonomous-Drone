@@ -187,8 +187,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="drone">
-				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/drone" prefix_auto="0" extension_auto="0"/>
+			<Target title="video_stream">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/video_stream" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -210,14 +210,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 drone"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 video_stream"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="drone/fast">
-				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/drone" prefix_auto="0" extension_auto="0"/>
+			<Target title="video_stream/fast">
+				<Option output="/home/magshimim/Documents/exit-scan/cmake-build-debug/video_stream" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/magshimim/Documents/exit-scan/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -239,36 +239,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 drone/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 video_stream/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/magshimim/Documents/exit-scan/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/detect_exit.hpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/dist_point.cpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/dist_point.hpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/find_path.cpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/find_path.hpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/point.cpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/point.hpp">
-			<Option target="drone"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/video_stream.cpp">
-			<Option target="drone"/>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/video.cpp">
+			<Option target="video_stream"/>
 		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Converter.cc">
 			<Option target="EXIT_SCAN"/>
