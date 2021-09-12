@@ -246,6 +246,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/video.cpp">
+			<Option target="video_stream"/>
+		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Converter.cc">
 			<Option target="EXIT_SCAN"/>
 		</Unit>
@@ -305,27 +308,6 @@
 		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ctello/src/ctello.cpp">
 			<Option target="ctello"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/DistPoint.cpp">
-			<Option target="video_stream"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/DistPoint.h">
-			<Option target="video_stream"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/Point.cpp">
-			<Option target="video_stream"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/Point.h">
-			<Option target="EXIT_SCAN"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/camera_calibration.hpp">
-			<Option target="video_stream"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/findExit.h">
-			<Option target="video_stream"/>
-		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/src/video_stream.cpp">
-			<Option target="video_stream"/>
 		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
