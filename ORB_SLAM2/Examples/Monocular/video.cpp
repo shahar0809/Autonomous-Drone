@@ -40,10 +40,13 @@ std::queue<cv::Mat>* frames = new std::queue<cv::Mat>();
 
 std::atomic<bool> isInit = { false };
 std::atomic<bool> isDone = { false };
+std::atomic<bool> orb = { false };
+
+
 
 // Constants
 const std::string TELLO_STREAM = "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=50000000";
-const std::string VOC_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/ORBvoc.txt";
+const std::string VOC_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/Vocabulary/ORBvoc.txt";
 const std::string CONFIG_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/tello.yaml";
 
 void video_stream()
@@ -59,6 +62,8 @@ void video_stream()
     tello.SendCommand("streamon");
     // Wait until tello sends response
     while (!(tello.ReceiveResponse()));
+
+    while(!orb);
 
     // Telling Tello to takeoff
     tello.SendCommand("takeoff");
@@ -109,7 +114,7 @@ int main(int argc, char **argv)
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(VOC_PATH,CONFIG_PATH,ORB_SLAM2::System::MONOCULAR,true);
-
+    orb = true;
     cout << endl << "-------" << endl;
     cout << "Start processing sequence ..." << endl;
 
@@ -140,6 +145,7 @@ int main(int argc, char **argv)
 
     drone_video.join();
     saveMap(SLAM);
+    std::cout << "SAVED MAP" << std::endl;
 
     // Stop all threads
     SLAM.Shutdown();

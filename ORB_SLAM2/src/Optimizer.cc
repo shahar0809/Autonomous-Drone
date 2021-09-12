@@ -185,7 +185,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
 
     // Optimize!
     optimizer.initializeOptimization();
-    //optimizer.optimize(nIterations);
+    optimizer.optimize(nIterations);
 
     // Recover optimized data
 
