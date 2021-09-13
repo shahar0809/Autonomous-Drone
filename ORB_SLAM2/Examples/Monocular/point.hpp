@@ -2,21 +2,28 @@
 #define POINT_H
 
 #include <string>
+#include <opencv2/core/core.hpp>
 
-class Point {
+class Point
+{
 public:
 
-    Point(double x = 0, double y = 0);
+    Point(float x = 0, float y = 0);
 
-    double getY() const;
-    double getX() const;
+    float getY() const;
+    float getX() const;
 
-    void setX(double x);
-    void setY(double y);
+    void setX(float x);
+    void setY(float y);
 
     //we get the numbers from the csv file as a string
     void setX(std::string x);
     void setY(std::string y);
+
+    explicit operator cv::Mat()
+    {
+        return cv::Mat { x, y };
+    }
 
 private:
     double x,y;

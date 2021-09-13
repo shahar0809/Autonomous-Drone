@@ -2,31 +2,31 @@
 #define EXIT_SCAN_NAVIGATION_HPP
 
 #include "point.hpp"
-#include "ctello.h"
+#include <queue>
+#include <mutex>
 
 class Navigator
 {
-protected:
-    ctello::Tello m_tello;
-
-    cv::Mat m_rotationMat, m_transVec;
-    cv::Mat m_exitPoint;
-    cv::Mat m_position;
-
-    cv::Mat m_exitVec;
-    cv::Mat m_droneVec;
-
-    void get_vectors();
-
-
-
 public:
-    Navigator(ctello::Tello& tello);
+    std::queue<cv::Mat> lastLocations;
+    std::mutex locMutex;
 
-    void get_position(cv::Mat tcw);
+    bool m_clockwise;
 
-    void get_angle();
+    cv::Mat m_exitVec, m_viewingVec;
+
+    void set_exit_point(Point p) { m_exitPoint = p; };
+
+    float calc_rotation_angle();
+
+    void calc_vectors();
+
+    float calc_angle_between_vectors(cv::Mat v1, cv::Mat v2);
+
+
+protected:
+    Point m_exitPoint;
+
 };
-
 
 #endif //EXIT_SCAN_NAVIGATION_HPP

@@ -20,7 +20,6 @@
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/dist_point.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/find_path.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/find_path.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/main.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
@@ -42,6 +41,7 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI00-02.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI03.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI04-12.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM1.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM2.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM3.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_euroc.cc" beforeDir="false" />
@@ -56,16 +56,9 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/detect_exit.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/detect_exit.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist_point.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist_point.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_path.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_path.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/point.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/point.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EXIT_SCAN.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/EXIT_SCAN.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_stream.cpp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,12 +99,12 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.video_stream">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -147,7 +140,8 @@
       <updated>1631457201559</updated>
       <workItem from="1631457204011" duration="2977000" />
       <workItem from="1631460533640" duration="7928000" />
-      <workItem from="1631530402180" duration="11302000" />
+      <workItem from="1631530402180" duration="25119000" />
+      <workItem from="1631567526381" duration="1080000" />
     </task>
     <servers />
   </component>

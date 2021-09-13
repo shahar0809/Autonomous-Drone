@@ -1,16 +1,36 @@
+#include <cmath>
+#include <opencv2/core/mat.hpp>
 #include "navigation.hpp"
 
-Navigator::Navigator(ctello::Tello &tello) : m_tello(tello) {}
-
-void Navigator::get_position(int tcw)
+float Navigator::calc_rotation_angle()
 {
-    m_transVec = tcw(Range::all(), Range(3, 4)).clone();
-    m_rotationMat = tcw(Range::all(), Range(0, 3)).clone();
-
-    m_position = cv::transpose(m_rotationMat) * m_transVec;
+    calc_vectors();
+    return calc_angle_between_vectors(m_exitVec, m_viewingVec);
 }
 
-void Navigator::get_vectors()
+void Navigator::calc_vectors()
 {
-    m_exitVec = cv::Mat()
+    locMutex.lock();
+    cv::Mat currLocation = lastLocations.back();
+    currLocation = { currLocation.at<float>(0), currLocation.at<float>(1) };
+    lastLocations.pop();
+    cv::Mat prevLocation = lastLocations.back();
+    prevLocation = { prevLocation.at<float>(0), prevLocation.at<float>(1) };
+    lastLocations.pop();
+    locMutex.unlock();
+
+    m_viewingVec = prevLocation - currLocation;
+    m_exitVec = (cv::Mat)m_exitPoint - currLocation;
+}
+
+float Navigator::calc_angle_between_vectors(cv::Mat v1, cv::Mat v2)
+{
+    float dot_prod = v1.at<float>(0) * v2.at<float>(0) +
+            v1.at<float>(1) * v2.at<float>(1);
+
+    float determinant = v1.at<float>(0) * v2.at<float>(1) -
+                        v2.at<float>(0) * v1.at<float>(1);
+
+    m_clockwise = determinant <= 0;
+    return std::acos(dot_prod);
 }
