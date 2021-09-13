@@ -15,10 +15,8 @@
   <component name="ChangeListManager">
     <list default="true" id="23238efb-17f1-46bb-8342-1db321526388" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pointData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH01.txt" beforeDir="false" />
@@ -49,11 +47,8 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EXIT_SCAN.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/KeyFrameTrajectory.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ORB_SLAM2.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/drone" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/KeyFrameTrajectory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/KeyFrameTrajectory.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +61,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ORB_SLAM2" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProjectId" id="1y2kj3NLLdD4jdHSCCuRRJs67oe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -81,15 +77,16 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="trusted.hosts" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager" selected="CMake Application.video_stream">
     <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -124,11 +121,24 @@
       <option name="presentableId" value="Default" />
       <updated>1631457201559</updated>
       <workItem from="1631457204011" duration="2977000" />
-      <workItem from="1631460533640" duration="255000" />
+      <workItem from="1631460533640" duration="7928000" />
+      <workItem from="1631530402180" duration="6051000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
