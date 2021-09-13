@@ -60,3 +60,11 @@ double Point::convert (std::string str){
     }
     return num;
 }
+
+cv:Mat<double> Point::convertToMat (Point point){
+    double data[2];
+    data[0]=point.get_x();
+    data[1]=point.get_y();
+    cv::Mat mat = cv::Mat(2, 1, cv::DataType<double>::type, data);
+
+}
