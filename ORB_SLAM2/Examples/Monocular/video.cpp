@@ -85,10 +85,11 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
         while (!(tello.ReceiveResponse()));
     }
 
-    for (int deg = 0; deg <= FULL_TURN; deg += TURN_DEGREE)
+    for (int deg = 0; deg <= FULL_TURN;)
     {
         tello.SendCommand("cw " + std::to_string(TURN_DEGREE));
         while (!(tello.ReceiveResponse()));
+        deg += TURN_DEGREE;
 
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
@@ -103,6 +104,28 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
         tello.SendCommand("stop");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+        if(!SLAM.MapChanged())
+        {
+            std::cout << "NOT CHANGED" << std::endl;
+            tello.SendCommand("ccw " + std::to_string(TURN_DEGREE - 10));
+            while (!(tello.ReceiveResponse()));
+            deg -= TURN_DEGREE -10;
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
+            tello.SendCommand("forward 10");
+            while (!(tello.ReceiveResponse()));
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+            tello.SendCommand("backward 20");
+            while (!(tello.ReceiveResponse()));
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+            tello.SendCommand("stop");
+            while (!(tello.ReceiveResponse()));
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        }
     }
 
     saveMap(SLAM);
