@@ -10,7 +10,7 @@
 
 void saveMap(ORB_SLAM2::System &SLAM);
 void video_stream();
-void handle_drone();
+void handle_drone(ctello::Tello& tello);
 
 std::mutex queueMutex;
 std::queue<cv::Mat> frames;
@@ -19,15 +19,16 @@ std::atomic<bool> isInit = { false };
 std::atomic<bool> isDone = { false };
 std::atomic<bool> isORB = { false };
 
+const int TURN_DEGREE = 20;
+const int FULL_TURN = 360;
 
 // Constants
 const std::string TELLO_STREAM = "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=50000000";
 const std::string VOC_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/Vocabulary/ORBvoc.txt";
 const std::string CONFIG_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/tello.yaml";
 
-void handle_drone()
+void handle_drone(ctello::Tello& tello)
 {
-    ctello::Tello tello;
     bool takeoff = false;
 
     if (!tello.Bind())
@@ -73,18 +74,18 @@ void handle_drone()
         while (!(tello.ReceiveResponse()));
     }
 
-    for (int deg = 0; deg <= 360; deg += 15)
+    for (int deg = 0; deg <= FULL_TURN; deg += TURN_DEGREE)
     {
-        tello.SendCommand("cw 30");
+        tello.SendCommand("cw " + std::to_string(TURN_DEGREE));
         while (!(tello.ReceiveResponse()));
 
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-        tello.SendCommand("forward 3");
+        tello.SendCommand("forward 5");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-        tello.SendCommand("backward 3");
+        tello.SendCommand("backward 5");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
@@ -118,7 +119,8 @@ void video_stream()
 
 int main()
 {
-    std::thread manage_drone(handle_drone);
+    ctello::Tello tello;
+    std::thread manage_drone(handle_drone, std::ref(tello));
     std::thread drone_video(video_stream);
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
@@ -128,7 +130,7 @@ int main()
     cout << "Start processing sequence ..." << endl;
 
     auto finish = std::chrono::system_clock::now() + 2min;
-    cv::Mat currFrame;
+    cv::Mat currFrame, tcw;
 
     while (!isDone)
     {
@@ -148,7 +150,7 @@ int main()
             }
 
             // Pass the image to the SLAM system
-            SLAM.TrackMonocular(currFrame, 0.2);
+            tcw = SLAM.TrackMonocular(currFrame, 0.2);
         }
         queueMutex.unlock();
     }
@@ -159,12 +161,14 @@ int main()
     std::cout << "trying to save" << std::endl;
     saveMap(SLAM);
     std::cout << "SAVED MAP" << std::endl;
-
-    // Stop all threads
     SLAM.Shutdown();
 
-    // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+    /* Get rotation matrix and translation vector */
+    cv::Mat rotationMat, transVec;
+
+    cv::Mat currPosition, finalPoint;
+
+    //tello.SendCommand("goto " + std::to_string(finalPoint[0][0]))
 
     return 0;
 }
