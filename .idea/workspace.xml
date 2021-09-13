@@ -24,7 +24,6 @@
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH01.txt" beforeDir="false" />
@@ -56,9 +55,7 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EXIT_SCAN.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/EXIT_SCAN.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/video_stream.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +138,7 @@
       <workItem from="1631457204011" duration="2977000" />
       <workItem from="1631460533640" duration="7928000" />
       <workItem from="1631530402180" duration="25119000" />
-      <workItem from="1631567526381" duration="1080000" />
+      <workItem from="1631567526381" duration="5466000" />
     </task>
     <servers />
   </component>
@@ -159,5 +156,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp</url>
+          <line>270</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="tcw" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

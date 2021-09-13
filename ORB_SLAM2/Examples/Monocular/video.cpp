@@ -9,34 +9,39 @@
 #include <atomic>
 #include "detect_exit.hpp"
 #include "navigation.hpp"
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
+/* FUNCTIONS */
 void saveMap(ORB_SLAM2::System &SLAM);
 void video_stream();
-void handle_drone(ctello::Tello& tello);
-void get_position(cv::Mat tcw);
+void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM);
+void get_position();
 
 std::mutex queueMutex;
 std::queue<cv::Mat> frames;
 
+/* ATOMIC VARIABLES */
 std::atomic<bool> isInit = { false };
 std::atomic<bool> isDone = { false };
-std::atomic<bool> saveM = { false };
 
 Navigator navigator;
+cv::Mat tcw;
 
-const int TURN_DEGREE = 25;
+/* CONSTANTS */
+const int TURN_DEGREE = 20;
 const int FULL_TURN = 360;
 float MIN_ANGLE = 30;
 
-cv::Mat tcw1, tcw2;
-
-// Constants
+/* PATHS TO NECESSARY FILES */
 const std::string TELLO_STREAM = "udp://0.0.0.0:11111?overrun_nonfatal=1&fifo_size=50000000";
 const std::string VOC_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/Vocabulary/ORBvoc.txt";
 const std::string CONFIG_PATH = "/home/magshimim/Documents/exit-scan/ORB_SLAM2/tello.yaml";
 
-void handle_drone(ctello::Tello& tello)
+void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
 {
+    std::cout << "drone" << std::endl;
+
     if (!tello.Bind())
     {
         std::cerr << "Couldn't bind to Tello!" << std::endl;
@@ -87,11 +92,11 @@ void handle_drone(ctello::Tello& tello)
 
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-        tello.SendCommand("forward 30");
+        tello.SendCommand("forward 20");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-        tello.SendCommand("backward 30");
+        tello.SendCommand("backward 20");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
@@ -100,7 +105,7 @@ void handle_drone(ctello::Tello& tello)
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     }
 
-    saveM = true;
+    saveMap(SLAM);
     navigator.set_exit_point(FindExit());
 
     float angle = navigator.calc_rotation_angle();
@@ -152,7 +157,6 @@ void handle_drone(ctello::Tello& tello)
             //Wait until tello sends response
             while (!(tello.ReceiveResponse()));
         }
-
     }
 
     tello.SendCommand("cw " + std::to_string(angle));
@@ -167,12 +171,16 @@ void handle_drone(ctello::Tello& tello)
 
 void video_stream()
 {
+    std::cout << "video stream" << std::endl;
+
     cv::VideoCapture capture{TELLO_STREAM, cv::CAP_FFMPEG};
     cv::Mat frame;
 
     /* If ORB-SLAM is not initialized, move up and down */
     while(!isDone)
     {
+        std::cout << "try" << std::endl;
+
         capture >> frame;
 
         if (!frame.empty())
@@ -182,23 +190,25 @@ void video_stream()
             frames.push(frame);
             queueMutex.unlock();
         }
+
+        get_position();
     }
 }
 
 int main()
 {
-    ctello::Tello tello;
-    std::thread manage_drone(handle_drone, std::ref(tello));
-    std::thread drone_video(video_stream);
-
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(VOC_PATH,CONFIG_PATH,ORB_SLAM2::System::MONOCULAR,true);
+
+    ctello::Tello tello;
+    std::thread manage_drone(handle_drone, std::ref(tello), std::ref(SLAM));
+    std::thread drone_video(video_stream);
 
     cout << endl << "-------" << endl;
     cout << "Start processing sequence ..." << endl;
 
     auto finish = std::chrono::system_clock::now() + 2min;
-    cv::Mat currFrame, tcw;
+    cv::Mat currFrame;
 
     while (!isDone)
     {
@@ -218,22 +228,16 @@ int main()
             }
 
             // Pass the image to the SLAM system
-            tcw1 = SLAM.TrackMonocular(currFrame, 0.2);
+            tcw = SLAM.TrackMonocular(currFrame, 0.2);
         }
         queueMutex.unlock();
-
-        if (isInit && saveM)
-        {
-            saveMap(SLAM);
-            saveM = false;
-        }
     }
 
     std::cout << "trying to join" << std::endl;
+
     drone_video.join();
     manage_drone.join();
-    std::cout << "trying to save" << std::endl;
-    std::cout << "SAVED MAP" << std::endl;
+
     SLAM.Shutdown();
 
     return 0;
@@ -257,15 +261,26 @@ void saveMap(ORB_SLAM2::System &SLAM)
     pointData.close();
 }
 
-void get_position(cv::Mat tcw)
+void get_position()
 {
-    cv::Mat rotation = tcw(cv::Range::all(), cv::Range(3, 4)).clone();
-    cv::Mat translation = -rotation * tcw.rowRange(0, 3).col(3);
+    try {
+        std::cout << tcw << std::endl;
 
-    std::vector<float> quatVec = ORB_SLAM2::Converter::toQuaternion(rotation);
+        if (!tcw.empty())
+        {
+            cv::Mat translation = tcw(cv::Range::all(), cv::Range(3, 4)).clone();
+            cv::Mat rotation = -rotation * tcw.rowRange(0, 3).col(3);
 
-    cv::Mat twc( { translation.at<float>(0), translation.at<float>(1),
-            translation.at<float>(2), quatVec[0], quatVec[1], quatVec[2], quatVec[3] });
+            std::vector<float> quatVec = ORB_SLAM2::Converter::toQuaternion(rotation);
 
-    navigator.lastLocations.push(twc);
+            cv::Mat twc( { translation.at<float>(0), translation.at<float>(1),
+                           translation.at<float>(2), quatVec[0], quatVec[1], quatVec[2], quatVec[3] });
+
+            navigator.lastLocations.push(twc);
+        }
+    }
+    catch (...)
+    {
+        return;
+    }
 }
