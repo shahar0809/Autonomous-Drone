@@ -173,7 +173,7 @@ void findrectangle (std::vector<Point> &points, std::vector<Point> &vertex){// a
 void getxy(std::vector<Point> &xzy) {//from file to vector
     std::ifstream file;
     int i=0;
-    file.open("C:\\Users\\saker\\CLionProjects\\untitled2\\pointData5.csv");
+    file.open("C:\\Users\\saker\\CLionProjects\\untitled2\\pointData1.csv");
 
     std::string line, num;
 
