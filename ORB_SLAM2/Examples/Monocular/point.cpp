@@ -1,34 +1,37 @@
 #include "point.hpp"
 
-Point::Point(float x, float y) : x(x),y(y) {}
 
-float Point::getX() const {
-    return x;
+Point::Point(float _x , float _y ) {
+    x = _x;
+    y = _y;
+}
+float Point::getX() { return x; };
+float Point::getY() { return y; };
+
+void Point::setX(float num) {
+    x=num;
+    return;
 }
 
-float Point::getY() const {
-    return y;
-}
-
-void Point::setX(float x) {
-    Point::x = x;
-}
-
-void Point::setY(float y) {
-    Point::y = y;
+void Point::setY(float num) {
+    y=num;
+    return;
 }
 
 void Point::setX(std::string str) {
-    Point::x = convert (str);;
+    x=convert (str);
+    return;
 }
 
 void Point::setY(std::string str) {
-    Point::y = convert (str);
+    y=convert (str);
+    return;
 }
 
-double convert (std::string str){
+float convert (std::string str)
+{
     int i,j;
-    float num = 0, q = 0;
+    double num = 0, q = 0;
     bool Int = true, sign = false;
 
     for (i = 0; i < str.length(); i++) {

@@ -10,8 +10,8 @@ public:
 
     Point(float x = 0, float y = 0);
 
-    float getY() const;
-    float getX() const;
+    float getY();
+    float getX();
 
     void setX(float x);
     void setY(float y);
@@ -26,10 +26,10 @@ public:
     }
 
 private:
-    double x,y;
+    float x,y;
 };
 
 //convert string to a double number
-double convert (std::string str);
+float convert (std::string str);
 
 #endif //POINT_H

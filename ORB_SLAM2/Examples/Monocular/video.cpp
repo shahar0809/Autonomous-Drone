@@ -93,11 +93,11 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
 
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-        tello.SendCommand("forward 20");
+        tello.SendCommand("up 25");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-        tello.SendCommand("backward 20");
+        tello.SendCommand("down 25");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
@@ -105,20 +105,19 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-        if(!SLAM.MapChanged())
+        if(tcw.empty())
         {
             std::cout << "NOT CHANGED" << std::endl;
-            tello.SendCommand("ccw " + std::to_string(TURN_DEGREE - 10));
+            tello.SendCommand("ccw " + std::to_string(10));
             while (!(tello.ReceiveResponse()));
-            deg -= TURN_DEGREE -10;
+            deg -= 10;
 
             std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-            tello.SendCommand("forward 10");
+            tello.SendCommand("up 25");
             while (!(tello.ReceiveResponse()));
-            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-            tello.SendCommand("backward 20");
+            tello.SendCommand("down 25");
             while (!(tello.ReceiveResponse()));
             std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
@@ -181,9 +180,6 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
             while (!(tello.ReceiveResponse()));
         }
     }
-
-    tello.SendCommand("cw " + std::to_string(angle));
-    while (!(tello.ReceiveResponse()));
 
     tello.SendCommand("forward 200");
     while (!(tello.ReceiveResponse()));
@@ -291,13 +287,12 @@ void get_position()
 
         if (!tcw.empty())
         {
-            cv::Mat translation = tcw(cv::Range::all(), cv::Range(3, 4)).clone();
-            cv::Mat rotation = -rotation * tcw.rowRange(0, 3).col(3);
+            cv::Mat Rwc = tcw.rowRange(0, 3).colRange(0, 3).t();
+            cv::Mat twc = -Rwc * tcw.rowRange(0, 3).col(3);
+            std::vector<float> quatVec = ORB_SLAM2::Converter::toQuaternion(Rwc);
 
-            std::vector<float> quatVec = ORB_SLAM2::Converter::toQuaternion(rotation);
-
-            cv::Mat twc( { translation.at<float>(0), translation.at<float>(1),
-                           translation.at<float>(2), quatVec[0], quatVec[1], quatVec[2], quatVec[3] });
+            cv::Mat t( { twc.at<float>(0), twc.at<float>(1),
+                         twc.at<float>(2), quatVec[0], quatVec[1], quatVec[2], quatVec[3] });
 
             navigator.lastLocations.push(twc);
         }
