@@ -1,32 +1,35 @@
+#include <cmath>
+#include <opencv2/core/mat.hpp>
 #include "navigation.hpp"
 
-Navigator::Navigator(ctello::Tello &tello) : m_tello(tello) {}
-
-void Navigator::get_position(int tcw)
+float Navigator::calc_rotation_angle()
 {
-    m_transVec = tcw(Range::all(), Range(3, 4)).clone();
-    m_rotationMat = tcw(Range::all(), Range(0, 3)).clone();
-
-    m_position = cv::transpose(m_rotationMat) * m_transVec;
+    calc_vectors();
+    return calc_angle_between_vectors(m_exitVec, m_viewingVec);
 }
 
-void Navigator::get_vectors()
+void Navigator::calc_vectors()
 {
-    m_exitVec = cv::Mat()
+    locMutex.lock();
+    cv::Mat currLocation = lastLocations.back();
+    currLocation = { currLocation.at<float>(0), currLocation.at<float>(2) };
+    lastLocations.pop();
+    cv::Mat prevLocation = lastLocations.back();
+    prevLocation = { prevLocation.at<float>(0), prevLocation.at<float>(2) };
+    lastLocations.pop();
+    locMutex.unlock();
+
+    m_viewingVec = currLocation - prevLocation;
+    m_exitVec = (cv::Mat)m_exitPoint - currLocation;
 }
 
-double get_angle()
+float Navigator::calc_angle_between_vectors(cv::Mat v1, cv::Mat v2)
 {
-    double x1,x2,y1,y2,z1,z2;
+    float dot_prod = v1.at<float>(0) * v2.at<float>(0) +
+                     v1.at<float>(1) * v2.at<float>(1);
 
-    x1 = m_exitVec.at<double>(0,0);x2 = m_droneVec.at<double>(0,0);
-    y1 = m_exitVec.at<double>(2,0);y2 = m_droneVec.at<double>(2,0);
-    z1 = m_exitVec.at<double>(1,0);z2 = m_droneVec.at<double>(1,0);
-
-    double dot = x1*x2 + y1*y2 + z1*z2;
-    double lenSq1 = x1*x1 + y1*y1 + z1*z1;
-    double lenSq2 = x2*x2 + y2*y2 + z2*z2;
-    return acos(dot/sqrt(lenSq1 * lenSq2));
-
+    float determinant = v1.at<float>(0) * v2.at<float>(1) -
+                        v2.at<float>(0) * v1.at<float>(1);
+    
+    return std::atan2(determinant , dot_prod);
 }
-
