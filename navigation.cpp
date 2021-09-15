@@ -31,5 +31,7 @@ float Navigator::calc_angle_between_vectors(cv::Mat v1, cv::Mat v2)
     float determinant = v1.at<float>(0) * v2.at<float>(1) -
                         v2.at<float>(0) * v1.at<float>(1);
     
-    return std::atan2(determinant , dot_prod);
+    return std::atan2(determinant , dot_prod); // -180 to 180
+    //OR 
+    //return std::atan2(determinant , dot_prod) + 180;// 0 to 360
 }
