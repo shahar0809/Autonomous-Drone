@@ -23,7 +23,6 @@
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH01.txt" beforeDir="false" />
@@ -46,16 +45,27 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_euroc.cc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_kitti.cc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_tum.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Converter.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/Converter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Frame.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/Frame.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/LoopClosing.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/LoopClosing.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/MapPoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/MapPoint.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBVocabulary.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/ORBVocabulary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Converter.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Frame.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/FrameDrawer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Initializer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/KeyFrame.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/KeyFrameDatabase.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/LocalMapping.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/LoopClosing.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Map.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/MapDrawer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/MapPoint.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBVocabulary.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBextractor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBmatcher.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Optimizer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Sim3Solver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Tracking.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Viewer.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +75,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ORB_SLAM2" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -95,20 +104,10 @@
       <recent name="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.video_stream">
-    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ctello" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="ctello" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="video_stream" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="video_stream" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="EXIT_SCAN" RUN_TARGET_NAME="video_stream">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -116,11 +115,6 @@
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="CMake Application.ctello" />
-      <item itemvalue="CMake Application.EXIT_SCAN" />
-      <item itemvalue="CMake Application.video_stream" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
