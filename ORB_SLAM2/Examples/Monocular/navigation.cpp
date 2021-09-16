@@ -31,6 +31,5 @@ float Navigator::calc_angle_between_vectors(cv::Mat v1, cv::Mat v2)
     float determinant = v1.at<float>(0) * v2.at<float>(1) -
                         v2.at<float>(0) * v1.at<float>(1);
 
-    m_clockwise = determinant <= 0;
-    return std::acos(dot_prod);
+    return std::atan2(determinant , dot_prod);
 }
