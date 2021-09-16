@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="EXIT_SCAN" targetName="video_stream" />
+      <config projectName="EXIT_SCAN" targetName="EXIT_SCAN" />
+      <config projectName="EXIT_SCAN" targetName="ctello" />
+    </generated>
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
@@ -7,74 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bd426c2-bb0d-44c9-ab3b-da97c7c8ee9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/detect_exit.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/detect_exit.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/dist_point.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/dist_point.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/find_path.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/find_path.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/EXIT_SCAN.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/exit-scan.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH01.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH02.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH03.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH04.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH05.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/V101.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/V102.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/V103.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/V201.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/V202.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/V203.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI00-02.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI03.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI04-12.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM1.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM2.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM3.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_euroc.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_kitti.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_tum.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Converter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Frame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/FrameDrawer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Initializer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/KeyFrame.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/KeyFrameDatabase.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/LocalMapping.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/LoopClosing.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Map.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/MapDrawer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/MapPoint.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBVocabulary.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBextractor.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/ORBmatcher.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Optimizer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Sim3Solver.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Tracking.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Viewer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello" beforeDir="false" afterPath="$PROJECT_DIR$/ctello" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/.clang-format" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/COPYING" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/examples/flip.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/examples/follow.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/resources/images/ctello_joystick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/resources/images/tello_cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/drone" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +27,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -101,14 +45,15 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager" selected="CMake Application.video_stream">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -142,7 +87,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1631807634470</updated>
+      <workItem from="1631807636538" duration="1073000" />
+      <workItem from="1631808805424" duration="174000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
