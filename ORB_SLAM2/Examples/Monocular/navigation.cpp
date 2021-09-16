@@ -20,7 +20,7 @@ void Navigator::calc_vectors()
     locMutex.unlock();
 
     m_viewingVec = prevLocation - currLocation;
-    m_exitVec = (cv::Mat)m_exitPoint - currLocation;
+    m_exitVec = Point::convertToMat(m_exitPoint) - currLocation;
 }
 
 float Navigator::calc_angle_between_vectors(cv::Mat v1, cv::Mat v2)

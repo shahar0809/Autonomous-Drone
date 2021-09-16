@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 
+#include <opencv2/core/core.hpp>
+
 class Point
 {
 public:
@@ -21,7 +23,7 @@ public:
     //convert string to a double number
     double convert (std::string str);
 
-    cv::Mat<double> Point::convertToMat (Point point);
+    static cv::Mat convertToMat (Point point);
 
 private:
     double x, y;

@@ -9,8 +9,6 @@
 #include <atomic>
 #include "detect_exit.hpp"
 #include "navigation.hpp"
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
 /* FUNCTIONS */
 void saveMap(ORB_SLAM2::System &SLAM);

@@ -3,6 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/ORB_SLAM2" vcs="" />
-    <mapping directory="$PROJECT_DIR$/ctello" vcs="" />
+    <mapping directory="$PROJECT_DIR$/ctello" vcs="Git" />
   </component>
 </project>
