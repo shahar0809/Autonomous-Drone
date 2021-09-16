@@ -134,7 +134,7 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
 
     if (angle <= MIN_ANGLE)
     {
-        if (navigator.m_clockwise)
+        if (angle>=0)
         {
             tello.SendCommand("cw " + std::to_string(angle));
             //Wait until tello sends response
@@ -153,7 +153,7 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
 
         for(int i = 0; i < amountOfTurns; i++)
         {
-            if (navigator.m_clockwise)
+            if (angle>=0)
             {
                 tello.SendCommand("cw " + std::to_string(MIN_ANGLE));
                 //Wait until tello sends response
@@ -167,7 +167,7 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
             }
         }
 
-        if (navigator.m_clockwise)
+        if (angle>=0)
         {
             tello.SendCommand("cw " + std::to_string(int(fmod(angle, MIN_ANGLE))));
             //Wait until tello sends response
