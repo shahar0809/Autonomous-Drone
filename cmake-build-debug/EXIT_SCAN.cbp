@@ -246,6 +246,30 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/detect_exit.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/detect_exit.hpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/dist_point.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/dist_point.hpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/navigation.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/navigation.hpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/point.cpp">
+			<Option target="video_stream"/>
+		</Unit>
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/point.hpp">
+			<Option target="video_stream"/>
+		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/video.cpp">
 			<Option target="video_stream"/>
 		</Unit>

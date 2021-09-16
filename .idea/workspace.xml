@@ -14,8 +14,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23238efb-17f1-46bb-8342-1db321526388" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/detect_exit.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/detect_exit.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/dist_point.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/dist_point.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/find_path.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/find_path.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pointData.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC.yaml" beforeDir="false" />
@@ -33,6 +40,7 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI00-02.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI03.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/KITTI04-12.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM1.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM2.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/TUM3.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/mono_euroc.cc" beforeDir="false" />
@@ -47,7 +55,6 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/PnPsolver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/include/System.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/KeyFrameTrajectory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/KeyFrameTrajectory.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,9 +91,17 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular" />
+    </key>
   </component>
   <component name="RunManager" selected="CMake Application.video_stream">
     <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -122,7 +137,8 @@
       <updated>1631457201559</updated>
       <workItem from="1631457204011" duration="2977000" />
       <workItem from="1631460533640" duration="7928000" />
-      <workItem from="1631530402180" duration="6051000" />
+      <workItem from="1631530402180" duration="25119000" />
+      <workItem from="1631567526381" duration="6619000" />
     </task>
     <servers />
   </component>
@@ -140,5 +156,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp</url>
+          <line>293</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="tcw" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
