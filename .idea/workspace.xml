@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
-    <generated>
-      <config projectName="EXIT_SCAN" targetName="video_stream" />
-      <config projectName="EXIT_SCAN" targetName="EXIT_SCAN" />
-      <config projectName="EXIT_SCAN" targetName="ctello" />
-    </generated>
-  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23238efb-17f1-46bb-8342-1db321526388" name="Changes" comment="">
+    <list default="true" id="7bd426c2-bb0d-44c9-ab3b-da97c7c8ee9e" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/detect_exit.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/detect_exit.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/dist_point.cpp" afterDir="false" />
@@ -23,6 +16,13 @@
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/point.hpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/EXIT_SCAN.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/exit-scan.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/EuRoC_TimeStamps/MH01.txt" beforeDir="false" />
@@ -66,6 +66,15 @@
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Tracking.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/include/Viewer.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/ORB_SLAM2/src/LoopClosing.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello" beforeDir="false" afterPath="$PROJECT_DIR$/ctello" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/.clang-format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/COPYING" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/examples/flip.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/examples/follow.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/resources/images/ctello_joystick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctello/resources/images/tello_cover.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,10 +85,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ORB_SLAM2" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1y2kj3NLLdD4jdHSCCuRRJs67oe" />
+  <component name="ProjectId" id="1yED12Kso8cJz5z84VXOGzw2jQS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -93,21 +101,26 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="trusted.hosts" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular" />
-    </key>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="CMake Application.video_stream">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ctello" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="ctello" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="video_stream" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="video_stream" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="EXIT_SCAN" RUN_TARGET_NAME="video_stream">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -115,43 +128,21 @@
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="CMake Application.ctello" />
+      <item itemvalue="CMake Application.EXIT_SCAN" />
+      <item itemvalue="CMake Application.video_stream" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="23238efb-17f1-46bb-8342-1db321526388" name="Changes" comment="" />
-      <created>1631457201559</created>
+      <changelist id="7bd426c2-bb0d-44c9-ab3b-da97c7c8ee9e" name="Changes" comment="" />
+      <created>1631807634470</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1631457201559</updated>
-      <workItem from="1631457204011" duration="2977000" />
-      <workItem from="1631460533640" duration="7928000" />
-      <workItem from="1631530402180" duration="25119000" />
-      <workItem from="1631567526381" duration="6619000" />
-      <workItem from="1631613017234" duration="4178000" />
+      <updated>1631807634470</updated>
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="CMakeRunConfiguration">
-        <watch expression="tcw" language="ObjectiveC" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

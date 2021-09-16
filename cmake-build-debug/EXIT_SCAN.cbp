@@ -68,6 +68,7 @@
 					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -95,6 +96,7 @@
 					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -122,6 +124,7 @@
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/local/include/opencv"/>
 					<Add directory="/usr/include/c++/9"/>
@@ -150,6 +153,7 @@
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/local/include/opencv"/>
 					<Add directory="/usr/include/c++/9"/>
@@ -198,6 +202,7 @@
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
 					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/local/include/opencv"/>
@@ -227,6 +232,7 @@
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ORB_SLAM2/include"/>
+					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/home/magshimim/Documents/exit-scan/ctello/include"/>
 					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/local/include/opencv"/>
