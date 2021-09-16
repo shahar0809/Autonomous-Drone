@@ -1,102 +1,89 @@
 #include "detect_exit.hpp"
-#define MIN 7
-#include <fstream>
-#include <algorithm>
 
+/*
+*
+*/
 Point FindExit()
 {
     std::vector<Point> points, vertex, outp,suspicious;
     int Size;
-    //0     1
-    //
-    //3     2
+
+    /* 0     1
+    *
+    *  3     2
+    */
+
     for (int i=0; i<4; i++)
     {
         vertex.push_back(Point());
     }
 
-    getXy(points);
+    get_xy(points);
 
-    do{
+    do
+    {
         outp.clear();
-        findrectangle(points, vertex);
+        findRectangle(points, vertex);
         Size=points.size();
-        clearinside(points, outp, vertex);
+        clearPoints(points, outp, vertex);
         points.clear();
 
-        for (int i=0; i<outp.size(); i++){
-            points.push_back(Point(outp[i].getX(),outp[i].getY()));
+        for (int i=0; i<outp.size(); i++)
+        {
+            points.push_back(Point(outp[i].get_x(),outp[i].get_y()));
         }
+
         std::cout << "points "<<points.size()<<"Size  "<<Size<<std::endl;
-    }while (points.size()>150&&Size!=points.size());
 
-
-    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-    std::cout<<vertex[0].getX()<<","<< vertex[0].getY();
-    std::cout<< "             " <<vertex[1].getX()<<","<< vertex[1].getY()<<std::endl;
-    std::cout<<vertex[3].getX()<<","<< vertex[3].getY();
-    std::cout<< "             " <<vertex[2].getX()<<","<< vertex[2].getY()<<std::endl;
-
-
-    //((((((((((((((((((((((((((()))))))))))))))))))))))))))
-    std::vector<Point> ver;
-    ver.push_back(Point(1,1));
-    ver.push_back(Point(2,1));
-    ver.push_back(Point(2,0));
-    ver.push_back(Point(1,0));
-    Dispoint point(Point(3,0.5));
-    point.setdis(ver);
-    std::cout<< "point distance  " << point.dis << std::endl;
-
-    //keepsuspicious (outp, suspicious);
-
-/*
-	cout <<"CCCCCCCCC"<< endl << endl;
-	for (int i=0; i < points.size()-1; i++) {
-		cout << points[i].getX() << "   ***   " << points[i].getY() << endl;
-	}
-*/
-
+    } while (points.size()>150 && Size!=points.size());
 
     Point exit;
     Exit(points, vertex, exit);
     return exit;
-
-
 }
 
-
-void Exit(std::vector<Point> &points, std::vector<Point> &vertex,Point& exit){
-    std:: vector<Dispoint> blocks;//we will use the dis to save the number of elements in the block, and point to save one point
+/*
+*
+*/
+void Exit(std::vector<Point> &points, std::vector<Point> &vertex,Point& exit)
+{
+    /*
+    wWe will use the dis to save the number of elements in the block, 
+    and point to save one point.
+    */
+    std:: vector<Dispoint> blocks;
     Dispoint temp;
-    /*for (int i=0; i<points.size();i++){
-        dist.push_back(Dispoint(Point(points[i].getX(),points[i].getY())));
-        dist[i].setdis(vertex);
-    }*/
 
-    for (int i=0; i<points.size();i++){
-        blocks.push_back(Dispoint(Point(points[i].getX(),points[i].getY())));
+    for (int i=0; i<points.size();i++)
+    {
+        blocks.push_back(Dispoint(Point(points[i].get_x(),points[i].get_y())));
         blocks[i].add();
-        for (int j=i; j<points.size(); j++){
 
-            if(dis(points[i],points[j])<0.03){
-                (temp.point).setX(points[j].getX());
-                (temp.point).setY(points[j].getY());
-                temp.setdis(vertex);
-                if(blocks[i].dis<temp.dis){//representative is the one with max distance
-                    (blocks[i].point).setX(points[j].getX());
-                    (blocks[i].point).setY(points[j].getY());
-                    blocks[i].setdis(vertex);
+        for (int j=i; j<points.size(); j++)
+        {
+            if(dis(points[i], points[j]) < 0.03)
+            {
+                (temp.point).set_x(points[j].get_x());
+                (temp.point).set_y(points[j].get_y());
+                temp.set_dist(vertex);
+
+                // Representative is the one with max distance
+                if(blocks[i].dis<temp.dis)
+                {
+                    (blocks[i].point).set_x(points[j].get_x());
+                    (blocks[i].point).set_y(points[j].get_y());
+                    blocks[i].set_dist(vertex);
                 }
                 points.erase(points.begin()+i);
                 blocks[i].add();
             }
-
         }
     }
-    for(int i=0;i<blocks.size();i++){
-        if (blocks[i].num<MIN){
+
+    for(int i=0; i < blocks.size(); i++)
+    {
+        if (blocks[i].num < MIN)
+        {
             blocks.erase(blocks.begin()+i);
             i--;
         }
@@ -106,89 +93,90 @@ void Exit(std::vector<Point> &points, std::vector<Point> &vertex,Point& exit){
     std::sort(blocks.begin(), blocks.end());//sort by distance
 
     temp=blocks[blocks.size()-1];
-    exit.setX((temp.point).getX());
-    exit.setY((temp.point).getY());
+    exit.set_x((temp.point).get_x());
+    exit.set_y((temp.point).get_y());
     return;
 }
 
-double dis(Point p1, Point p2){
-    return sqrt(pow(p1.getX()-p2.getX(), 2) + pow(p1.getY()-p2.getY(), 2));
+/*
+*
+*/
+double dis(Point p1, Point p2)
+{
+    return sqrt(pow(p1.get_x() - p2.get_x(), 2) + pow(p1.get_y()-p2.get_y(), 2));
 }
 
-void clearinside (std::vector<Point> &points, std::vector<Point> &outp, std::vector<Point> &vertex){
-    for (int i=0; i < points.size(); i++) {
-        if (!(points[i].getX()>=vertex[0].getX() && points[i].getX()<=vertex[1].getX()
-              && points[i].getY()>=vertex[3].getY() && points[i].getY()<=vertex[0].getY())){
-            outp.push_back(Point(points[i].getX(),points[i].getY()));
+void clearPoints (std::vector<Point> &points, std::vector<Point> &outp, std::vector<Point> &vertex)
+{
+    for (int i=0; i < points.size(); i++) 
+    {
+        if (!(points[i].get_x() >= vertex[0].get_x() && 
+        points[i].get_x() <= vertex[1].get_x() && 
+        points[i].get_y() >= vertex[3].get_y() && 
+        points[i].get_y() <= vertex[0].get_y()))
+        {
+            outp.push_back(Point(points[i].get_x(),points[i].get_y()));
         }
     }
-    return;
 }
 
-void findrectangle (std::vector<Point> &points, std::vector<Point> &vertex){// avg points and distances
+// avg points and distances
+void findRectangle (std::vector<Point> &points, std::vector<Point> &vertex)
+{
     int i;
-    double x=0,y=0,disx=0,disy=0;
-    for (int i=0; i < points.size(); i++) {
-        y += (points[i].getY()/(points.size()));
-        x += (points[i].getX()/(points.size()));
+    double x=0, y=0, disx=0, disy=0;
+    for (int i=0; i < points.size(); i++) 
+    {
+        y += (points[i].get_y()/(points.size()));
+        x += (points[i].get_x()/(points.size()));
     }
 
-    //avg distance
-    for (int i=0; i < points.size(); i++) {
-        disy += (abs (points[i].getY()-y)/(points.size()));
-        disx += (abs (points[i].getX()-x)/(points.size()));
+    // avg distance
+    for (int i=0; i < points.size(); i++) 
+    {
+        disy += (abs (points[i].get_y()-y)/(points.size()));
+        disx += (abs (points[i].get_x()-x)/(points.size()));
     }
-
 
     //0     1
     //
     //3     2
 
+    vertex[0].set_x(x-disx);
+    vertex[0].set_y(y+disy);
 
+    vertex[1].set_x(x+disx);
+    vertex[1].set_y(y+disy);
 
-    vertex[0].setX(x-disx);
-    vertex[0].setY(y+disy);
+    vertex[2].set_x(x+disx);
+    vertex[2].set_y(y-disy);
 
-    vertex[1].setX(x+disx);
-    vertex[1].setY(y+disy);
-
-    vertex[2].setX(x+disx);
-    vertex[2].setY(y-disy);
-
-    vertex[3].setX(x-disx);
-    vertex[3].setY(y-disy);
-
-
-    //((((((((((((((((()))))))))))))))))
-    std::cout<<vertex[0].getX()<<","<< vertex[0].getY();
-    std::cout<< "             " <<vertex[1].getX()<<","<< vertex[1].getY()<<std::endl;
-    std:: cout<<vertex[3].getX()<<","<< vertex[3].getY();
-    std::cout<< "             " <<vertex[2].getX()<<","<< vertex[2].getY()<<std::endl;
-
-    //cout << x << "   ###   " << y << endl;
-    //cout << disx << "   ###   " << disy << endl;
-
-
-    return;
+    vertex[3].set_x(x-disx);
+    vertex[3].set_y(y-disy);
 }
 
-void getXy(std::vector<Point> &xzy) {//from file to vector
+// from file to vector
+void get_xy(std::vector<Point> &xzy) 
+{
     std::ifstream file;
     int i=0;
-    file.open(SCAN_PATH);
+    file.open("C:\\Users\\saker\\CLionProjects\\untitled9\\pointData3.csv");
 
     std::string line, num;
 
-    while(file.good()){
+    while(file.good())
+    {
         getline(file, num, ',');
-        if (num == "\0"){
+        if (num == "\0")
+        {
             break;
         }
+
         xzy.push_back(Point());
-        xzy[i].setX(num);
+        xzy[i].set_x(num);
         getline(file, num, ',');
         getline(file, num, '\n');
-        xzy[i].setY(num);
+        xzy[i].set_y(num);
         i++;
     }
     file.close();
