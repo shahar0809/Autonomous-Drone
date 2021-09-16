@@ -1,32 +1,32 @@
 #include "point.hpp"
 
-Point::Point(float x, float y) : x(x),y(y) {}
+Point::Point(double _x, double _y) : x(_x),y(_y) {}
 
-float Point::getX() const {
-    return x;
+double Point::get_x() { return x; };
+double Point::get_y() { return y; };
+
+void Point::set_x(double num) {
+    x=num;
+    return;
 }
 
-float Point::getY() const {
-    return y;
+void Point::set_y(double num) {
+    y=num;
+    return;
 }
 
-void Point::setX(float x) {
-    Point::x = x;
+void Point::set_x(std::string str) {
+    x=convert (str);
+    return;
 }
 
-void Point::setY(float y) {
-    Point::y = y;
+void Point::set_y(std::string str) {
+    y=convert (str);
+    return;
 }
 
-void Point::setX(std::string str) {
-    Point::x = convert (str);;
-}
-
-void Point::setY(std::string str) {
-    Point::y = convert (str);
-}
-
-double convert (std::string str){
+double Point::convert (std::string str)
+{
     int i,j;
     float num = 0, q = 0;
     bool Int = true, sign = false;
@@ -56,4 +56,11 @@ double convert (std::string str){
         num = -num;
     }
     return num;
+}
+
+cv:Mat<double> Point::convertToMat (Point point){
+    double data[2];
+    data[0]=point.get_x();
+    data[1]=point.get_y();
+    cv::Mat mat = cv::Mat(2, 1, cv::DataType<double>::type, data);
 }
