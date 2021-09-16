@@ -1,23 +1,21 @@
-#include "dist_point.hpp"
-#include "point.hpp"
-#include <iostream>
-#include <vector>
-
 #ifndef UNTITLED2_FINDEXIT_H
 #define UNTITLED2_FINDEXIT_H
 
-#define SCAN_PATH "tmp/pointData.csv"
+#include "dist_point.hpp"
+#define MIN 7
+#include <fstream>
+#include <algorithm>
 
 //get the data from "pointData.csv" and save it in a vector (xzy)
-void getXy(std::vector<Point> &xzy);
+void get_xy(std::vector<Point> &xzy);
 
 //given the list of points
 //the function build a rectangle using the average value according to x and the distance from this point
 // and the same with y
-void findrectangle (std::vector<Point> &points, std::vector<Point> &vertex);
+void findRectangle (std::vector<Point> &points, std::vector<Point> &vertex);
 
 //save in the vector outp all the points that are outside the rectangle.
-void clearinside (std::vector<Point> &points, std::vector<Point> &outp, std::vector<Point> &vertex);
+void clearPoints (std::vector<Point> &points, std::vector<Point> &outp, std::vector<Point> &vertex);
 
 //divide into blocks
 //delete blocks with few points
