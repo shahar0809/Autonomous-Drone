@@ -4,7 +4,7 @@ Shahar Tefler and Diana Saker
 An autonomous drone that will be able to scan the room, and navigate through it without prescanned map.
 The drone will detect the exit of the room, and then, navigate to it.
 
-Note: The updated code is in the `drone_video_stream` branch
+**Note:** The updated code is in the `drone_video_stream` branch
 
 ## Libraries 
 - [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2)
