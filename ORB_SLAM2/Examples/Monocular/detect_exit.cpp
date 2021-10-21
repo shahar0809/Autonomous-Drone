@@ -33,12 +33,15 @@ Point FindExit()
             points.push_back(Point(outp[i].get_x(),outp[i].get_y()));
         }
 
-        std::cout << "points "<<points.size()<<"Size  "<<Size<<std::endl;
+        std::cout << "points "<<points.size()<< "Size  "<<Size<<std::endl;
 
     } while (points.size()>150 && Size!=points.size());
 
     Point exit;
     Exit(points, vertex, exit);
+    std::cout << "************************************" << std::endl;
+    std::cout << "Exit Point: (" << exit.get_x() << "," << exit.get_y() << ")" << std::endl;
+    std::cout << "************************************" << std::endl;
     return exit;
 }
 
@@ -160,7 +163,7 @@ void get_xy(std::vector<Point> &xzy)
 {
     std::ifstream file;
     int i=0;
-    file.open("C:\\Users\\saker\\CLionProjects\\untitled9\\pointData3.csv");
+    file.open("/tmp/pointData.csv");
 
     std::string line, num;
 

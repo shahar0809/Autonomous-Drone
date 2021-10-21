@@ -14,6 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bd426c2-bb0d-44c9-ab3b-da97c7c8ee9e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ctello" beforeDir="false" afterPath="$PROJECT_DIR$/ctello" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ctello/.clang-format" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ctello/CMakeLists.txt" beforeDir="false" />
@@ -53,11 +55,6 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager" selected="CMake Application.video_stream">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -95,6 +92,8 @@
       <workItem from="1631807636538" duration="1073000" />
       <workItem from="1631808805424" duration="174000" />
       <workItem from="1631809573549" duration="599000" />
+      <workItem from="1634046109758" duration="1277000" />
+      <workItem from="1634816669115" duration="20867000" />
     </task>
     <servers />
   </component>
@@ -112,5 +111,31 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp</url>
+          <line>240</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp</url>
+          <line>254</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/navigation.cpp</url>
+          <line>29</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/navigation.cpp</url>
+          <line>12</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

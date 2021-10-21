@@ -10,26 +10,39 @@ float Navigator::calc_rotation_angle()
 
 void Navigator::calc_vectors()
 {
-    locMutex.lock();
-    cv::Mat currLocation = lastLocations.back();
-    currLocation = { currLocation.at<float>(0), currLocation.at<float>(1) };
-    lastLocations.pop();
-    cv::Mat prevLocation = lastLocations.back();
-    prevLocation = { prevLocation.at<float>(0), prevLocation.at<float>(1) };
-    lastLocations.pop();
-    locMutex.unlock();
+    curr = cv::Mat(2, 1, CV_32F,{ curr.at<float>(0, 0), curr.at<float>(2, 0) });
+    std::cout << "Curr" << std::endl;
+    std::cout << curr << std::endl;
+    prev = cv::Mat(2, 1, CV_32F,{ prev.at<float>(0, 0), prev.at<float>(2, 0) });
 
-    m_viewingVec = prevLocation - currLocation;
-    m_exitVec = Point::convertToMat(m_exitPoint) - currLocation;
+    std::cout << "prev" << std::endl;
+    std::cout << prev << std::endl;
+    // Calculating camera vector and exit vector
+    m_viewingVec = prev - curr;
+    cv::Mat pointMat(2, 1, CV_32F, {m_exitPoint.get_x(),m_exitPoint.get_y()});
+    m_exitVec = pointMat - curr;
+    std::cout << "exit vec" << std::endl;
+    std::cout << m_exitVec << std::endl;
 }
 
 float Navigator::calc_angle_between_vectors(cv::Mat v1, cv::Mat v2)
 {
-    float dot_prod = v1.at<float>(0) * v2.at<float>(0) +
-            v1.at<float>(1) * v2.at<float>(1);
+    float dot_prod = v1.at<float>(0, 0) * v2.at<float>(0, 0) +
+            v1.at<float>(1, 0) * v2.at<float>(1, 0);
 
-    float determinant = v1.at<float>(0) * v2.at<float>(1) -
-                        v2.at<float>(0) * v1.at<float>(1);
+    std::cout << "dot prod" << std::endl;
+    std::cout << dot_prod << std::endl;
 
-    return std::atan2(determinant , dot_prod);
+    float determinant = v1.at<float>(0, 0) * v2.at<float>(1, 0) -
+                        v2.at<float>(0, 0) * v1.at<float>(1, 0);
+
+    std::cout << "det" << std::endl;
+    std::cout << determinant << std::endl;
+
+    float angle = std::atan2(determinant , dot_prod);
+    angle = angle * (180.0 / (std::atan(1.0) * 4) );
+    angle = 180 - angle;
+
+    std::cout << "angle : " << angle << std::endl;
+    return angle;
 }

@@ -8,7 +8,7 @@
 class Navigator
 {
 public:
-    std::queue<cv::Mat> lastLocations;
+    cv::Mat curr, prev;
     std::mutex locMutex;
 
     bool m_clockwise;

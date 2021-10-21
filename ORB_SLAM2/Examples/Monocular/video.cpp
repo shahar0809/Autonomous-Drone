@@ -14,7 +14,7 @@
 void saveMap(ORB_SLAM2::System &SLAM);
 void video_stream();
 void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM);
-void get_position();
+cv::Mat get_position();
 
 std::mutex queueMutex;
 std::queue<cv::Mat> frames;
@@ -65,7 +65,6 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
     //Wait until tello sends response
     while (!(tello.ReceiveResponse()));
 
-
     /* While ORB-SLAM isn't initialized, move up and down */
     while (!isInit)
     {
@@ -83,19 +82,23 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
         while (!(tello.ReceiveResponse()));
     }
 
+    // Making a full turn with the drone
     for (int deg = 0; deg <= FULL_TURN;)
     {
+        // Turn a bit
         tello.SendCommand("cw " + std::to_string(TURN_DEGREE));
         while (!(tello.ReceiveResponse()));
         deg += TURN_DEGREE;
 
+        // Wait a bit for ORB-SLAM2 to detect point
         std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-        tello.SendCommand("up 25");
+        /* Up and down */
+        tello.SendCommand("up 20");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-        tello.SendCommand("down 25");
+        tello.SendCommand("down 20");
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
@@ -103,12 +106,13 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
         while (!(tello.ReceiveResponse()));
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
+        // Check if points were detected, if no new points, then turn back
         if(tcw.empty())
         {
             std::cout << "NOT CHANGED" << std::endl;
-            tello.SendCommand("ccw " + std::to_string(10));
+            tello.SendCommand("ccw " + std::to_string(TURN_DEGREE));
             while (!(tello.ReceiveResponse()));
-            deg -= 10;
+            deg -= TURN_DEGREE;
 
             std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
@@ -126,64 +130,38 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
     }
 
     saveMap(SLAM);
-    navigator.set_exit_point(FindExit());
+
+    tello.SendCommand("forward 15");
+    while (!(tello.ReceiveResponse()));
+    navigator.prev = get_position();
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    tello.SendCommand("back 15");
+    while (!(tello.ReceiveResponse()));
+    navigator.curr = get_position();
+
+    Point exitPoint = FindExit();
+    navigator.set_exit_point(exitPoint);
 
     float angle = navigator.calc_rotation_angle();
 
-    if (angle <= MIN_ANGLE)
+    if (angle <= 180)
     {
-        if (angle>=0)
-        {
-            tello.SendCommand("cw " + std::to_string(angle));
-            //Wait until tello sends response
-            while (!(tello.ReceiveResponse()));
-        }
-        else
-        {
-            tello.SendCommand("ccw " + std::to_string(angle));
-            //Wait until tello sends response
-            while (!(tello.ReceiveResponse()));
-        }
+        tello.SendCommand("cw " + std::to_string(angle));
+        //Wait until tello sends response
+        while (!(tello.ReceiveResponse()));
     }
     else
     {
-        int amountOfTurns = angle / MIN_ANGLE;
-
-        for(int i = 0; i < amountOfTurns; i++)
-        {
-            if (angle>=0)
-            {
-                tello.SendCommand("cw " + std::to_string(MIN_ANGLE));
-                //Wait until tello sends response
-                while (!(tello.ReceiveResponse()));
-            }
-            else
-            {
-                tello.SendCommand("ccw " + std::to_string(MIN_ANGLE));
-                //Wait until tello sends response
-                while (!(tello.ReceiveResponse()));
-            }
-        }
-
-        if (angle>=0)
-        {
-            tello.SendCommand("cw " + std::to_string(int(fmod(angle, MIN_ANGLE))));
-            //Wait until tello sends response
-            while (!(tello.ReceiveResponse()));
-        }
-        else
-        {
-            tello.SendCommand("ccw " + std::to_string(int(fmod(angle, MIN_ANGLE))));
-            //Wait until tello sends response
-            while (!(tello.ReceiveResponse()));
-        }
+        tello.SendCommand("ccw " + std::to_string(360 - angle));
+        //Wait until tello sends response
+        while (!(tello.ReceiveResponse()));
     }
 
     tello.SendCommand("forward 200");
     while (!(tello.ReceiveResponse()));
 
     isDone = true;
-    //this_thread::sleep_for(3000);
 }
 
 void video_stream()
@@ -196,8 +174,6 @@ void video_stream()
     /* If ORB-SLAM is not initialized, move up and down */
     while(!isDone)
     {
-        std::cout << "try" << std::endl;
-
         capture >> frame;
 
         if (!frame.empty())
@@ -207,8 +183,6 @@ void video_stream()
             frames.push(frame);
             queueMutex.unlock();
         }
-
-        get_position();
     }
 }
 
@@ -253,7 +227,9 @@ int main()
     std::cout << "trying to join" << std::endl;
 
     drone_video.join();
+    std::cout << "joined drone video" <<std::endl;
     manage_drone.join();
+    std::cout << "joined handle drone" <<std::endl;
 
     SLAM.Shutdown();
 
@@ -262,9 +238,10 @@ int main()
 
 void saveMap(ORB_SLAM2::System &SLAM)
 {
+    std::cout << "save map" << std::endl;
     std::vector<ORB_SLAM2::MapPoint*> mapPoints = SLAM.GetMap()->GetAllMapPoints();
     std::ofstream pointData;
-    pointData.open("/Map/pointData.csv");
+    pointData.open("/tmp/pointData.csv");
 
     for(auto p : mapPoints)
     {
@@ -278,25 +255,26 @@ void saveMap(ORB_SLAM2::System &SLAM)
     pointData.close();
 }
 
-void get_position()
+cv::Mat get_position()
 {
     try {
         std::cout << tcw << std::endl;
 
         if (!tcw.empty())
         {
+            // -Rotation.transpose * t_vec
             cv::Mat Rwc = tcw.rowRange(0, 3).colRange(0, 3).t();
             cv::Mat twc = -Rwc * tcw.rowRange(0, 3).col(3);
-            std::vector<float> quatVec = ORB_SLAM2::Converter::toQuaternion(Rwc);
 
-            cv::Mat t( { twc.at<float>(0), twc.at<float>(1),
-                         twc.at<float>(2), quatVec[0], quatVec[1], quatVec[2], quatVec[3] });
+            //std::vector<float> quatVec = ORB_SLAM2::Converter::toQuaternion(Rwc);
 
-            navigator.lastLocations.push(twc);
+            //cv::Mat t( { twc.at<float>(0), twc.at<float>(1),
+            // twc.at<float>(2), quatVec[0], quatVec[1], quatVec[2], quatVec[3] });
+
+            return twc;
         }
     }
     catch (...)
     {
-        return;
     }
 }
