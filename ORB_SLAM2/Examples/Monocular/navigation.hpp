@@ -4,6 +4,9 @@
 #include "point.hpp"
 #include <queue>
 #include <mutex>
+#include <math.h>
+
+#define M_PI
 
 class Navigator
 {

@@ -145,7 +145,7 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
 
     float angle = navigator.calc_rotation_angle();
 
-    if (angle <= 180)
+    if (angle >= 0)
     {
         tello.SendCommand("cw " + std::to_string(angle));
         //Wait until tello sends response

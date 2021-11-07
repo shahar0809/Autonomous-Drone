@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
-    <generated>
-      <config projectName="EXIT_SCAN" targetName="video_stream" />
-      <config projectName="EXIT_SCAN" targetName="EXIT_SCAN" />
-      <config projectName="EXIT_SCAN" targetName="ctello" />
-    </generated>
+    <generated />
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -15,16 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7bd426c2-bb0d-44c9-ab3b-da97c7c8ee9e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/video_stream" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/video_stream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello" beforeDir="false" afterPath="$PROJECT_DIR$/ctello" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/.clang-format" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/COPYING" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/examples/flip.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/examples/follow.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/resources/images/ctello_joystick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctello/resources/images/tello_cover.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +20,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -45,6 +30,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -54,20 +40,10 @@
     <property name="cmake.loaded.for.project" value="true" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="CMake Application.video_stream">
-    <configuration name="EXIT_SCAN" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="EXIT_SCAN" CONFIG_NAME="Debug">
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ctello" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="ctello" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="video_stream" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EXIT_SCAN" TARGET_NAME="video_stream" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="EXIT_SCAN" RUN_TARGET_NAME="video_stream">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -75,11 +51,6 @@
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="CMake Application.ctello" />
-      <item itemvalue="CMake Application.EXIT_SCAN" />
-      <item itemvalue="CMake Application.video_stream" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -112,6 +83,9 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -124,16 +98,6 @@
           <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/video.cpp</url>
           <line>254</line>
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/navigation.cpp</url>
-          <line>29</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/ORB_SLAM2/Examples/Monocular/navigation.cpp</url>
-          <line>12</line>
-          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
