@@ -276,7 +276,7 @@
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/point.hpp">
 			<Option target="video_stream"/>
 		</Unit>
-		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/video.cpp">
+		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/Examples/Monocular/test_navigation.cpp">
 			<Option target="video_stream"/>
 		</Unit>
 		<Unit filename="/home/magshimim/Documents/exit-scan/ORB_SLAM2/src/Converter.cc">

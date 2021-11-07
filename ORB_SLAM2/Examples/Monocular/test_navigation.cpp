@@ -1,10 +1,12 @@
 #include "detect_exit.hpp"
 #include "navigation.hpp"
 
+cv::Mat get_position(cv::Mat tcw);
+
 int main()
 {
     Navigator navigator;
-    Point exitPoint = FindExit();
+    Point exitPoint = FindExit("/home/magshimim/Documents/exit-scan/Data Examples/pointData_drone.csv");
     navigator.set_exit_point(exitPoint);
 
     float prev_arr[4][4] = {0.7651552, -0.10523132, 0.6351881, 0.20486319,
