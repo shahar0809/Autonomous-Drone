@@ -7,7 +7,7 @@
 #include <algorithm>
 
 //get the data from "pointData.csv" and save it in a vector (xzy)
-void get_xy(std::vector<Point> &xzy);
+void get_xy(std::string path, std::vector<Point> &xzy);
 
 //given the list of points
 //the function build a rectangle using the average value according to x and the distance from this point
@@ -26,7 +26,7 @@ void Exit(std::vector<Point> &points, std::vector<Point> &vertex,Point& exit);
 double dis(Point p1, Point p2);
 
 //this function uses the other functions and return the exit point
-Point FindExit();
+Point FindExit(std::string path);
 
 
 #endif //UNTITLED2_FINDEXIT_H

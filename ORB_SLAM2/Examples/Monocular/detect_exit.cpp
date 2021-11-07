@@ -3,7 +3,7 @@
 /*
 *
 */
-Point FindExit()
+Point FindExit(std::string path)
 {
     std::vector<Point> points, vertex, outp,suspicious;
     int Size;
@@ -18,7 +18,7 @@ Point FindExit()
         vertex.push_back(Point());
     }
 
-    get_xy(points);
+    get_xy(path, points);
 
     do
     {
@@ -159,11 +159,11 @@ void findRectangle (std::vector<Point> &points, std::vector<Point> &vertex)
 }
 
 // from file to vector
-void get_xy(std::vector<Point> &xzy) 
+void get_xy(std::string path, std::vector<Point> &xzy)
 {
     std::ifstream file;
     int i=0;
-    file.open("/tmp/pointData.csv");
+    file.open(path);
 
     std::string line, num;
 

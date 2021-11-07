@@ -140,7 +140,7 @@ void handle_drone(ctello::Tello& tello, ORB_SLAM2::System& SLAM)
     while (!(tello.ReceiveResponse()));
     navigator.curr = get_position();
 
-    Point exitPoint = FindExit();
+    Point exitPoint = FindExit("/tmp/pointData.csv");
     navigator.set_exit_point(exitPoint);
 
     float angle = navigator.calc_rotation_angle();
